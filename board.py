@@ -66,7 +66,7 @@ class Graph(object):
             for y in range(len(self.game_board[x])):
                 if [x][y] == 1:
                    print("why hello there")
-                print("I ran through all elements")
+                print("I ran through all elements today")
         
 
         #want to.. set pos for each, return pos for each, reset all board, 
