@@ -2,7 +2,7 @@ import pygame
 import pygame.locals
 import settings 
 from pac import Pacman
-from board import Board
+from board import Graph
 
 class GameController(object):
     def __init__(self):
@@ -11,7 +11,7 @@ class GameController(object):
         self.background = None
         self.clock = pygame.time.Clock()
         # testing game board commands
-        self.board = Board()
+        #self.graph = Graph()
 
     def setBackground(self):
         self.background = pygame.surface.Surface(settings.SCREENSIZE).convert()

@@ -1,10 +1,11 @@
 import pygame as pg
 from pygame.sprite import Sprite, Group
 
-class Board(object): 
-    def __int__(self):
-        # 0=wall   1=open_space_with_food    2=open_space_without_food   3=gghost_house_door
-        self.game_board[[0,0,0,0,0,0,0],
+class Graph(object):
+    print("I was called") 
+    def __init__(self):
+        # 0=wall   1=open_space_with_food    2=open_space_without_food   3=ghost_house_door
+        self.game_board = [[0,0,0,0,0,0,0],
                         [0,1,1,2,1,1,0],
                         [0,1,0,3,0,1,0],
                         [0,1,2,2,2,1,0],
@@ -52,13 +53,19 @@ class Board(object):
                        [0,0,0,0,0,0,0],
                        [0,0,0,0,0,0,0]]
         print("initalized all arrays")
-        getPacmanLocation()
+        #self.getPacmanLocation()
+        for x in range(7):
+            for y in range(7):
+                if [x][y] == 1:
+                   print("why hello there")
+                print("I ran through all elements")
+        
     
     def GetPacmanLocation():
         for x in range(len(self.game_board)):
             for y in range(len(self.game_board[x])):
                 if [x][y] == 1:
-                    print("why hello there")
+                   print("why hello there")
                 print("I ran through all elements")
         
 
