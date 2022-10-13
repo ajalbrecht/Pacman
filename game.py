@@ -2,6 +2,7 @@ import pygame
 import pygame.locals
 import settings 
 from pac import Pacman
+from board import Board
 
 class GameController(object):
     def __init__(self):
@@ -9,6 +10,8 @@ class GameController(object):
         self.screen = pygame.display.set_mode(settings.SCREENSIZE, 0, 32)
         self.background = None
         self.clock = pygame.time.Clock()
+        # testing game board commands
+        self.board = Board()
 
     def setBackground(self):
         self.background = pygame.surface.Surface(settings.SCREENSIZE).convert()
