@@ -11,7 +11,8 @@ class GameController(object):
         self.background = None
         self.clock = pygame.time.Clock()
         # testing game board commands
-        #self.graph = Graph()
+        self.graph = Graph()
+        #print(self.graph.SetCharacterLocation(3,(1,1)))
 
     def setBackground(self):
         self.background = pygame.surface.Surface(settings.SCREENSIZE).convert()
