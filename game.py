@@ -19,7 +19,7 @@ class GameController(object):
         self.graph = Graph(self.screen)
         print(self.graph.SetCharacterLocation(3,2,1))
 
-        self.play_button = Button(self.settings, self.screen, "Play")
+        self.play_button = Button(self.settings, self.screen, "Start Game")
         self.mouse_x, self.mouse_y = pygame.mouse.get_pos()
 
     def setBackground(self):
