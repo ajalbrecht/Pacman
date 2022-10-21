@@ -1,5 +1,6 @@
 import pygame as pg
 from pygame.sprite import Sprite, Group
+import settings
 
 class Graph(object):
     print("I was called") 
@@ -107,12 +108,50 @@ class Graph(object):
         self.SetTypeLocation(type, oldx, oldy, 0)
         self.SetTypeLocation(type, x, y, 1)
 
+    def check_food(self):
+        for Node in self.nodes:
+            if (Node.position()[0] - 20) < self.pac.position.asTuple()[0] < (Node.position()[0] + 20):
+                if (Node.position()[1] - 20) < self.pac.position.asTuple()[1] < (Node.position()[1] + 20):
+                    Node.hit()
+                    # increments points here  <-
+
+    def check_wall(self):
+        # prevent collsion from down direction
+        for Wall in self.walls:
+            if (Wall.position()[0] - 20) < self.pac.position.asTuple()[0] < (Wall.position()[0] + 20): # 25
+                if (Wall.position()[1] - 25) < self.pac.position.asTuple()[1] < (Wall.position()[1]):
+                    self.pac.direction = settings.UP
+        # prevent colisoin from up direction
+        for Wall in self.walls:
+            if (Wall.position()[0] - 20) < self.pac.position.asTuple()[0] < (Wall.position()[0] + 20): # 25
+                if (Wall.position()[1]) < self.pac.position.asTuple()[1] < (Wall.position()[1] + 25):
+                    self.pac.direction = settings.DOWN
+        # prevent colisoin from left direction
+        for Wall in self.walls:
+            if (Wall.position()[0]) < self.pac.position.asTuple()[0] < (Wall.position()[0] + 25): # 25
+                if (Wall.position()[1] - 20) < self.pac.position.asTuple()[1] < (Wall.position()[1] + 20):
+                    self.pac.direction = settings.RIGHT       
+        # prevent colisoin from right direction
+        for Wall in self.walls:
+            if (Wall.position()[0] - 25) < self.pac.position.asTuple()[0] < (Wall.position()[0]): # 25
+                if (Wall.position()[1] - 20) < self.pac.position.asTuple()[1] < (Wall.position()[1] + 20):
+                    self.pac.direction = settings.LEFT
+        
+        
+        
+
     def render(self):
+        self.check_food()
+        self.check_wall()
         for Node in self.nodes: Node.draw()
         for Wall in self.walls: Wall.draw()
         #collisions = pg.sprite.spritecollide(self.pac, self.nodes, True)
         #if collisions:
         #    self.nodes.hit()
+
+
+        #for Wall in self.walls:
+
 
 class Node(Sprite):
     def __init__(self, x, y, screen):
@@ -127,6 +166,9 @@ class Node(Sprite):
     def hit(self):
         self.kill()
 
+    def position(self):
+        return self.x, self.y
+
 class Wall(Sprite):
     def __init__(self, x, y, screen):
         super().__init__()
@@ -136,6 +178,9 @@ class Wall(Sprite):
         
     def draw(self):    
         pg.draw.rect(self.screen, (0,0,255), pg.Rect(self.x-16, self.y-16, 32, 32))
+
+    def position(self):
+        return self.x, self.y
 
         
 
