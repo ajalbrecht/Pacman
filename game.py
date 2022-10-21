@@ -15,9 +15,7 @@ class GameController(object):
         self.screen = pygame.display.set_mode(settings.SCREENSIZE, 0, 32)
         self.background = None
         self.clock = pygame.time.Clock()
-        # testing game board commands
-        self.graph = Graph(self.screen)
-        print(self.graph.SetCharacterLocation(3,2,1))
+        self.graph = 0
 
         self.play_button = Button(self.settings, self.screen, "Start Game")
         self.mouse_x, self.mouse_y = pygame.mouse.get_pos()
@@ -29,6 +27,9 @@ class GameController(object):
     def startGame(self):
         self.setBackground()
         self.pacman = Pacman()
+        # testing game board commands
+        self.graph = Graph(self.screen, self.pacman)
+        #print(self.graph.SetCharacterLocation(3,2,1))
 
     def update(self):
         while self.stats.game_active == False:
@@ -47,6 +48,7 @@ class GameController(object):
     def render(self):
         self.screen.blit(self.background, (0, 0))
         self.pacman.render(self.screen)
+        self.graph.render()
         pygame.display.update()
 
 

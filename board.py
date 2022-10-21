@@ -3,21 +3,37 @@ from pygame.sprite import Sprite, Group
 
 class Graph(object):
     print("I was called") 
-    def __init__(self, screen):
+    def __init__(self, screen, pac):
         # 0=wall   1=open_space_with_food    2=open_space_without_food   3=ghost_house_door
         self.screen = screen
-        self.game_board = [[0,0,0,0,0,0,0],
-                        [0,1,1,2,1,1,0],
-                        [0,1,0,3,0,1,0],
-                        [0,1,2,2,2,1,0],
-                        [0,1,0,0,0,1,0],
-                        [0,1,1,2,1,1,0],
-                        [0,0,0,0,0,0,0]]
+        self.pac = pac
+        self.game_board = [[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
+                           [0,1,1,1,1,1,1,1,1,1,1,1,1,1,0],
+                           [0,1,0,1,0,0,0,0,0,0,0,1,0,1,0],
+                           [0,1,1,1,1,1,1,1,1,1,1,1,1,1,0],
+                           [0,1,0,1,0,0,0,2,0,0,0,1,0,1,0],
+                           [0,1,0,1,0,0,2,2,2,0,0,1,0,1,0],
+                           [0,1,0,1,0,0,0,0,0,0,0,1,0,1,0],
+                           [0,1,0,1,1,1,0,0,0,1,1,1,0,1,0],
+                           [0,1,0,1,0,1,0,0,0,1,0,1,0,1,0],
+                           [0,1,0,1,0,1,1,1,1,1,0,1,0,1,0],
+                           [0,1,0,1,0,0,1,0,1,0,0,1,0,1,0],
+                           [0,1,0,1,0,0,1,0,1,0,0,1,0,1,0],
+                           [0,1,1,1,1,1,1,1,1,1,1,1,1,1,0],
+                           [0,1,0,1,0,0,0,1,0,0,0,1,0,1,0],
+                           [0,1,0,1,0,0,0,1,0,0,0,1,0,1,0],
+                           [0,1,1,1,1,1,1,1,1,1,1,1,1,1,0],
+                           [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
+                           [2,2,2,2,2,2,2,2,2,2,2,2,2,2,2],
+                           [2,2,2,2,2,2,2,2,2,2,2,2,2,2,2]]
         self.nodes = Group()
-        for y in range(7):
-            for x in range(7):
-                if self.game_board[x][y] == 1:
+        self.walls = Group()
+        for y in range(17):
+            for x in range(15):
+                if self.game_board[y][x] == 1:
                     self.nodes.add(Node(x, y,self.screen))
+                if self.game_board[y][x] == 0:
+                    self.walls.add(Wall(x, y,self.screen))
 
         self.Pacman = [[0,0,0,0,0,0,0],
                        [0,0,0,0,0,0,0],
@@ -76,8 +92,8 @@ class Graph(object):
 
     def GetCharacterLocation(self, type):
         character = self.TypeToCharacter(type)
-        for y in range(7):
-            for x in range(7):
+        for y in range(18):
+            for x in range(14):
                 if character[x][y] == 1:
                     return [x, y]
 
@@ -91,14 +107,35 @@ class Graph(object):
         self.SetTypeLocation(type, oldx, oldy, 0)
         self.SetTypeLocation(type, x, y, 1)
 
+    def render(self):
+        for Node in self.nodes: Node.draw()
+        for Wall in self.walls: Wall.draw()
+        #collisions = pg.sprite.spritecollide(self.pac, self.nodes, True)
+        #if collisions:
+        #    self.nodes.hit()
+
 class Node(Sprite):
     def __init__(self, x, y, screen):
         super().__init__()
-        self.x = x * 10
-        self.y = y * 10
+        self.x = x * 32 + 16
+        self.y = y * 32 + 16
         self.screen = screen
-        print("drawing a node at", x, y)
-        #pg.draw.circle(self.screen, Color(100,100,100,0), self.x, self.y)
+        
+    def draw(self):    
+        pg.draw.circle(self.screen, (255,255,255), (self.x, self.y), 5)
+
+    def hit(self):
+        self.kill()
+
+class Wall(Sprite):
+    def __init__(self, x, y, screen):
+        super().__init__()
+        self.x = x * 32 + 16
+        self.y = y * 32 + 16
+        self.screen = screen
+        
+    def draw(self):    
+        pg.draw.rect(self.screen, (0,0,255), pg.Rect(self.x-16, self.y-16, 32, 32))
 
         
 
@@ -106,3 +143,4 @@ class Node(Sprite):
 
         #want to.. set pos for each, return pos for each, reset all board, 
         #add later (poettialy draw board based upon array, gosts should still have their own draw)
+        # 14 * 18 Board

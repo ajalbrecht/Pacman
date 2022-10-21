@@ -17,7 +17,7 @@ class Pacman(object):
         self.position += self.directions[self.direction]*self.speed*dt
         direction = self.getValidKey()
         self.direction = direction
-
+        
     def getValidKey(self):
         key_pressed = pygame.key.get_pressed()
         if key_pressed[pygame.K_UP]:
