@@ -1,6 +1,4 @@
 
-
-
 YELLOW = (255, 255, 0)
 
 STOP = 0
@@ -10,6 +8,7 @@ LEFT = 2
 RIGHT = -2
 
 PACMAN = 0
+GHOST = 0
 
 TILEWIDTH = 16
 TILEHEIGHT = 16

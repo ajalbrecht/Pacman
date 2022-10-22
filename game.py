@@ -6,6 +6,7 @@ from board import Graph
 from gamestats import GameStats
 from button import Button
 import game_functions as gf
+from ghost import Ghost
 from sound import Sound
 
 class GameController(object):
@@ -29,7 +30,6 @@ class GameController(object):
     def startGame(self):
         self.setBackground()
         self.pacman = Pacman()
-        self.sound = Sound()
         # testing game board commands
         self.graph = Graph(self.screen, self.pacman, self.sound)
         #print(self.graph.SetCharacterLocation(3,2,1))
@@ -46,11 +46,13 @@ class GameController(object):
                 dt = self.clock.tick(30) / 1000.0
                 self.render()
                 self.pacman.update(dt)
+                self.ghost.update(dt)
                 gf.check_events(settings=self.settings, stats=self.stats, play_button=self.play_button)
 
     def render(self):
         self.screen.blit(self.background, (0, 0))
         self.pacman.render(self.screen)
+        self.ghost.render(self.screen)
         self.graph.render()
         pygame.display.update()
 
