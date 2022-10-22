@@ -11,21 +11,19 @@ class Ghost(Sprite):
     
     def __init__(self,game):
         self.game = game
-        self.screen = game.screen
-        self.settings = game.settings
+        self.screen = game
+        #self.settings = game.settings
         self.speed = 100
         self.image = pg.image.load('images/red-ghost.png')
 
         self.rect = self.image.get_rect()
-        self.screen_rect = game.screen.get_rect()
+        #self.screen_rect = game.screen.get_rect()
        
-        self.vel = Vector()
-
-    def update(self):	
-        self.posn += self.vel
-        self.render()
+        self.vel = Vector(200, 400)
    
     def render(self, screen):
-    
-        pg.image.load('images/red-ghost.png')
+        #self.update()
+        self.rect = (200,400)
+        #pg.image.load('images/red-ghost.png')
+        self.screen.blit(self.image, (200, 400))
 
