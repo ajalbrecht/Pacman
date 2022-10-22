@@ -7,14 +7,13 @@ import pygame.locals
 from sys import exit
 
 class Ghost(Sprite):
-    ghost_images = [pg.transform.rotozoom(pg.image.load(f'images/red-ghost.png'), 0, 1.0)]
-    ghost_images = [pg.transform.rotozoom(pg.image.load(f'images/pink-ghost.png'), 0, 1.0)]
-    ghost_images = [pg.transform.rotozoom(pg.image.load(f'images/orange-ghost.png'), 0, 1.0)]
-    ghost_images = [pg.transform.rotozoom(pg.image.load(f'images/blue-ghost.png'), 0, 1.0)]
-    
     def __init__(self,game):
         self.game = game
         self.screen = game
+        self.Blinky_location = (200, 160)
+        self.image__01_location = (220, 160)
+        self.image__02_location = (240, 160)
+        self.image__03_location = (260, 160) 
         #self.settings = game.settings
         #self.speed = 100
         self.Blinky = pg.image.load('images/red-ghost.png')
@@ -30,10 +29,10 @@ class Ghost(Sprite):
        
    
     def render(self, screen, x , y):
-        self.screen.blit(self.Blinky, (200, 160))
-        self.screen.blit(self.image__01, (220, 160))
-        self.screen.blit(self.image__02, (240, 160))
-        self.screen.blit(self.image__03, (260, 160))
+        self.screen.blit(self.Blinky, self.Blinky_location)
+        self.screen.blit(self.image__01, self.image__01_location)
+        self.screen.blit(self.image__02, self.image__02_location)
+        self.screen.blit(self.image__03, self.image__03_location)
 
 class Blinky(Ghost):
     def __init__(self,game):

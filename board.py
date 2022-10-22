@@ -83,6 +83,9 @@ class Graph(object):
                        [0,0,0,0,0,0,0]]
         print("initalized all arrays")
 
+    def board_copy():
+        return self.game_board
+
     def TypeToCharacter(self, type):
         if type == 0: return self.Pacman
         if type == 1: return self.Inky
