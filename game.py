@@ -19,6 +19,8 @@ class GameController(object):
         self.clock = pygame.time.Clock()
         self.graph = 0
         self.sound = 0
+        self.x=0
+        self.y =0
 
         self.play_button = Button(self.settings, self.screen, "Start Game")
         self.mouse_x, self.mouse_y = pygame.mouse.get_pos()
@@ -30,6 +32,8 @@ class GameController(object):
     def startGame(self):
         self.setBackground()
         self.pacman = Pacman()
+        self.ghost = Ghost(self.screen)
+        self.sound = Sound()
         # testing game board commands
         self.graph = Graph(self.screen, self.pacman, self.sound)
         #print(self.graph.SetCharacterLocation(3,2,1))
@@ -46,13 +50,13 @@ class GameController(object):
                 dt = self.clock.tick(30) / 1000.0
                 self.render()
                 self.pacman.update(dt)
-                self.ghost.update(dt)
+                #self.ghost.update()
                 gf.check_events(settings=self.settings, stats=self.stats, play_button=self.play_button)
 
     def render(self):
         self.screen.blit(self.background, (0, 0))
         self.pacman.render(self.screen)
-        self.ghost.render(self.screen)
+        self.ghost.render(self.screen,self.x,self.y)
         self.graph.render()
         pygame.display.update()
 
