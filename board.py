@@ -1,6 +1,7 @@
 import pygame as pg
 from pygame.sprite import Sprite, Group
 import settings
+import sound
 
 class Graph(object):
     print("I was called") 

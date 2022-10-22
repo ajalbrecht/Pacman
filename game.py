@@ -58,6 +58,7 @@ class GameController(object):
         self.pacman.render(self.screen)
         self.ghost.render(self.screen,self.x,self.y)
         self.graph.render()
+        pygame.display.flip()
         pygame.display.update()
 
 

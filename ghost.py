@@ -41,3 +41,4 @@ class Blinky(Ghost):
         self.render()
         
 
+        
