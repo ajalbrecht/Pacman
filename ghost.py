@@ -27,3 +27,4 @@ class Ghost(Sprite):
         #pg.image.load('images/red-ghost.png')
         self.screen.blit(self.image, (200, 400))
 
+        
