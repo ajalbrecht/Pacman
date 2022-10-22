@@ -135,14 +135,21 @@ class Graph(object):
         for Wall in self.walls:
             if (Wall.position()[0] - 25) < self.pac.position.asTuple()[0] < (Wall.position()[0]): # 25
                 if (Wall.position()[1] - 20) < self.pac.position.asTuple()[1] < (Wall.position()[1] + 20):
-                    self.pac.direction = settings.LEFT
-        
-        
-        
+                    self.pac.direction = settings.LEFT     
 
+    
+    def is_empty(self):
+        #print(self.nodes.sprites())
+        if not self.nodes.sprites():
+            for y in range(17):
+                for x in range(15):
+                    if self.game_board[y][x] == 1:
+                        self.nodes.add(Node(x, y,self.screen))
+    
     def render(self):
         self.check_food()
         self.check_wall()
+        self.is_empty()
         for Node in self.nodes: Node.draw()
         for Wall in self.walls: Wall.draw()
         #collisions = pg.sprite.spritecollide(self.pac, self.nodes, True)

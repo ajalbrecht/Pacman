@@ -2,8 +2,9 @@ import pygame
 import pygame.locals
 from vector import Vector
 import settings
+from pygame.sprite import Sprite, Group
 
-class Pacman(object):
+class Pacman(Sprite):
     def __init__(self):
         self.name = settings.PACMAN
         self.position = Vector(200, 400)
@@ -12,6 +13,7 @@ class Pacman(object):
         self.speed = 100
         self.radius = 10
         self.color = settings.YELLOW
+        self.image = pygame.image.load('images/pac-man.png')
 
     def update(self, dt):	
         self.position += self.directions[self.direction]*self.speed*dt
