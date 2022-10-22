@@ -4,12 +4,13 @@ import settings
 
 class Graph(object):
     print("I was called") 
-    def __init__(self, screen, pac):
+    def __init__(self, screen, pac, sound):
         # 0=wall   1=open_space_with_food    2=open_space_without_food   3=ghost_house_door
         self.screen = screen
         self.pac = pac
+        self.sound = sound
         self.game_board = [[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
-                           [0,1,1,1,1,1,1,1,1,1,1,1,1,1,0],
+                           [0,3,1,1,1,1,1,1,1,1,1,1,1,3,0],
                            [0,1,0,1,0,0,0,0,0,0,0,1,0,1,0],
                            [0,1,1,1,1,1,1,1,1,1,1,1,1,1,0],
                            [0,1,0,1,0,0,0,2,0,0,0,1,0,1,0],
@@ -23,19 +24,23 @@ class Graph(object):
                            [0,1,1,1,1,1,1,1,1,1,1,1,1,1,0],
                            [0,1,0,1,0,0,0,1,0,0,0,1,0,1,0],
                            [0,1,0,1,0,0,0,1,0,0,0,1,0,1,0],
-                           [0,1,1,1,1,1,1,1,1,1,1,1,1,1,0],
+                           [0,3,1,1,1,1,1,1,1,1,1,1,1,3,0],
                            [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
                            [2,2,2,2,2,2,2,2,2,2,2,2,2,2,2],
                            [2,2,2,2,2,2,2,2,2,2,2,2,2,2,2]]
         self.nodes = Group()
         self.walls = Group()
+        self.powerup = Group()
         for y in range(17):
             for x in range(15):
                 if self.game_board[y][x] == 1:
                     self.nodes.add(Node(x, y,self.screen))
                 if self.game_board[y][x] == 0:
                     self.walls.add(Wall(x, y,self.screen))
+                if self.game_board[y][x] == 3:
+                    self.powerup.add(Powerup(x, y,self.screen))                
 
+        # dead code atm
         self.Pacman = [[0,0,0,0,0,0,0],
                        [0,0,0,0,0,0,0],
                        [0,0,0,0,0,0,0],
@@ -108,11 +113,14 @@ class Graph(object):
         self.SetTypeLocation(type, oldx, oldy, 0)
         self.SetTypeLocation(type, x, y, 1)
 
+   ### end of dead code
+
     def check_food(self):
         for Node in self.nodes:
             if (Node.position()[0] - 20) < self.pac.position.asTuple()[0] < (Node.position()[0] + 20):
                 if (Node.position()[1] - 20) < self.pac.position.asTuple()[1] < (Node.position()[1] + 20):
                     Node.hit()
+                    self.sound.Eat()
                     # increments points here  <-
 
     def check_wall(self):
@@ -135,7 +143,15 @@ class Graph(object):
         for Wall in self.walls:
             if (Wall.position()[0] - 25) < self.pac.position.asTuple()[0] < (Wall.position()[0]): # 25
                 if (Wall.position()[1] - 20) < self.pac.position.asTuple()[1] < (Wall.position()[1] + 20):
-                    self.pac.direction = settings.LEFT     
+                    self.pac.direction = settings.LEFT
+
+    def is_powerup(self):
+        for Powerup in self.powerup:
+            if (Powerup.position()[0] - 20) < self.pac.position.asTuple()[0] < (Powerup.position()[0] + 20):
+                if (Powerup.position()[1] - 20) < self.pac.position.asTuple()[1] < (Powerup.position()[1] + 20):
+                    print("hello there")
+                    Powerup.hit()
+                    # start chase sound, and end later            
 
     
     def is_empty(self):
@@ -149,15 +165,11 @@ class Graph(object):
     def render(self):
         self.check_food()
         self.check_wall()
+        self.is_powerup()
         self.is_empty()
         for Node in self.nodes: Node.draw()
         for Wall in self.walls: Wall.draw()
-        #collisions = pg.sprite.spritecollide(self.pac, self.nodes, True)
-        #if collisions:
-        #    self.nodes.hit()
-
-
-        #for Wall in self.walls:
+        for Powerup in self.powerup: Powerup.draw()
 
 
 class Node(Sprite):
@@ -188,6 +200,22 @@ class Wall(Sprite):
 
     def position(self):
         return self.x, self.y
+
+class Powerup(Sprite):
+    def __init__(self, x, y, screen):
+        super().__init__()
+        self.x = x * 32 + 16
+        self.y = y * 32 + 16
+        self.screen = screen
+        
+    def draw(self):   
+        pg.draw.circle(self.screen, (255,100,0), (self.x, self.y), 8)
+
+    def hit(self):
+        self.kill()
+
+    def position(self):
+        return self.x, self.y   
 
         
 

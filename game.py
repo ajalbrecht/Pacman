@@ -6,6 +6,7 @@ from board import Graph
 from gamestats import GameStats
 from button import Button
 import game_functions as gf
+from sound import Sound
 
 class GameController(object):
     def __init__(self):
@@ -16,6 +17,7 @@ class GameController(object):
         self.background = None
         self.clock = pygame.time.Clock()
         self.graph = 0
+        self.sound = 0
 
         self.play_button = Button(self.settings, self.screen, "Start Game")
         self.mouse_x, self.mouse_y = pygame.mouse.get_pos()
@@ -27,8 +29,9 @@ class GameController(object):
     def startGame(self):
         self.setBackground()
         self.pacman = Pacman()
+        self.sound = Sound()
         # testing game board commands
-        self.graph = Graph(self.screen, self.pacman)
+        self.graph = Graph(self.screen, self.pacman, self.sound)
         #print(self.graph.SetCharacterLocation(3,2,1))
 
     def update(self):
