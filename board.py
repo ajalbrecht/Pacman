@@ -9,7 +9,7 @@ class Graph(object):
     print("I was called") 
     def __init__(self, screen, pac, sound, ghost):
         # 0=wall   1=open_space_with_food    2=open_space_without_food   3=ghost_house_door
-        # 5 = Teleport
+        # 5 = Teleport 4= fruit
         self.screen = screen
         self.pac = pac
         self.sound = sound
@@ -24,7 +24,7 @@ class Graph(object):
                            [0,3,1,1,1,1,1,1,1,1,1,1,1,3,0],
                            [0,1,0,1,0,0,0,0,0,0,0,1,0,1,0],
                            [0,1,1,1,1,1,1,1,1,1,1,1,1,1,0],
-                           [0,1,0,1,0,0,0,2,0,0,0,1,0,1,0],
+                           [0,1,0,1,0,0,0,2,0,0,0,1,0,4,0],
                            [0,1,0,1,0,0,2,2,2,0,0,1,0,1,0],
                            [0,1,0,1,0,0,0,0,0,0,0,1,0,1,0],
                            [0,1,0,1,1,1,0,0,0,1,1,1,0,1,0],
@@ -32,18 +32,21 @@ class Graph(object):
                            [5,1,0,1,0,1,1,1,1,1,0,1,0,1,6],
                            [0,1,0,1,0,0,1,0,1,0,0,1,0,1,0],
                            [0,1,0,1,0,0,1,0,1,0,0,1,0,1,0],
-                           [0,1,1,1,1,1,1,1,1,1,1,1,1,1,0],
+                           [0,4,1,1,1,1,1,1,1,1,1,1,1,1,0],
                            [0,1,0,1,0,0,0,1,0,0,0,1,0,1,0],
                            [0,1,0,1,0,0,0,1,0,0,0,1,0,1,0],
                            [0,3,1,1,1,1,1,1,1,1,1,1,1,3,0],
                            [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
                            [2,2,2,2,2,2,2,2,2,2,2,2,2,2,2],
                            [2,2,2,2,2,2,2,2,2,2,2,2,2,2,2]]
+
         self.nodes = Group()
         self.walls = Group()
         self.teleport = Group()
         self.teleport2 = Group()
         self.powerup = Group()
+        self.fruit = Group()
+
         for y in range(17):
             for x in range(15):
                 if self.game_board[y][x] == 1:
@@ -52,6 +55,8 @@ class Graph(object):
                     self.walls.add(Wall(x, y,self.screen))
                 if self.game_board[y][x] == 3:
                     self.powerup.add(Powerup(x, y,self.screen))
+                if self.game_board[y][x] == 4:
+                    self.fruit.add(Fruit(x, y,self.screen))      
                 if self.game_board[y][x] == 5:
                     self.teleport.add(Teleport(x, y,self.screen))   
                 if self.game_board[y][x] == 6:
@@ -252,8 +257,14 @@ class Graph(object):
                 if (Powerup.position()[1] - 20) < self.pac.position.asTuple()[1] < (Powerup.position()[1] + 20):
                     print("hello there")
                     Powerup.hit()
-                    # start chase sound, and end later            
-
+                    # start chase sound, and end later  
+                              
+    def is_fruit(self):
+        for Fruit in self.fruit:
+            if (Fruit.position()[0] - 20) < self.pac.position.asTuple()[0] < (Fruit.position()[0] + 20):
+                if (Fruit.position()[1] - 20) < self.pac.position.asTuple()[1] < (Fruit.position()[1] + 20):
+                    print("hello there")
+                    Fruit.hit()
     
     def is_empty(self):
         #print(self.nodes.sprites())
@@ -267,6 +278,7 @@ class Graph(object):
         self.check_food()
         self.check_wall()
         self.is_powerup()
+        self.is_fruit()
         self.check_pacghost()
         # self.powereffect()
         self.check_teleport()
@@ -275,6 +287,8 @@ class Graph(object):
         for Node in self.nodes: Node.draw()
         for Wall in self.walls: Wall.draw()
         for Powerup in self.powerup: Powerup.draw()
+        for Fruit in self.fruit: Fruit.draw()
+        
         for Teleport in self.teleport: Teleport.draw()
         #self.ghost.ghost_direction(3, 1, 1)
         #print(self.ghost.Blinky_location)
@@ -325,6 +339,23 @@ class Powerup(Sprite):
 
     def position(self):
         return self.x, self.y   
+
+class Fruit(Sprite):
+    def __init__(self, x, y, screen):
+        super().__init__()
+        self.x = x * 32 + 16
+        self.y = y * 32 + 16
+        self.screen = screen
+        
+    def draw(self):   
+        pg.draw.circle(self.screen, (255,0,0), (self.x, self.y), 6)
+
+    def hit(self):
+        # add points
+        self.kill()
+
+    def position(self):
+        return self.x, self.y
 
 class Teleport(Sprite):
     def __init__(self, x, y, screen):
