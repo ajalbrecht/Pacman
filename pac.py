@@ -61,5 +61,5 @@ class Pacman(Sprite):
 
     def render(self, screen):
         p = self.position.asInt()
-        self.screen.blit(self.image, p)
+        pygame.draw.circle(screen, self.color, p, self.radius)
 
