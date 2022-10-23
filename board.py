@@ -1,7 +1,9 @@
 import pygame as pg
 from pygame.sprite import Sprite, Group
+from ghost import Blinky
 import settings
 import sound
+import random
 
 class Graph(object):
     print("I was called") 
@@ -11,6 +13,12 @@ class Graph(object):
         self.pac = pac
         self.sound = sound
         self.ghost = ghost
+        
+        self.Blinky_timer = 0
+        self.Blinky_directionX = 0
+        self.Blinky_directionY = 0
+        self.Blinky_old_move = 0
+
         self.game_board = [[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
                            [0,3,1,1,1,1,1,1,1,1,1,1,1,3,0],
                            [0,1,0,1,0,0,0,0,0,0,0,1,0,1,0],
@@ -120,6 +128,56 @@ class Graph(object):
 
    ### end of dead code
 
+    def random_track(self, type):
+        #self.ghost.ghost_direction(3, 1, 1)
+        #print(self.ghost.Blinky_location)
+        
+        # curent = self.ghost.Blinky_location
+        #if self.Blinky_timer == 0:
+        #option_list = [1,2,3,4]
+       #print(self.ghost.Blinky_location)
+       # x = self.ghost.Blinky_location[0] / 32
+        #y = self.ghost.Blinky_location[1] / 32
+        #print(x,y)
+        #self.ghost.ghost_direction(0, 0, 0)
+        if self.Blinky_timer == 0:
+            x = self.ghost.Blinky_location[0] / 32
+            y = self.ghost.Blinky_location[1] / 32
+            x = round(x)
+            y = round(y)
+            option_list = []
+            if self.game_board[y+1][x] != 0:
+                option_list.append(3)
+                self.Blinky_old_move = 3
+            if self.game_board[y-1][x] != 0:
+                option_list.append(4)
+                self.Blinky_old_move = 4
+            if self.game_board[y][x+1] != 0:
+                option_list.append(1)
+                self.Blinky_old_move = 1
+            if self.game_board[y][x-1] != 0:
+                option_list.append(2)
+                self.Blinky_old_move = 2
+            print(option_list)
+            random_direction = random.choice(option_list)
+            if random_direction == 1: 
+                self.Blinky_directionX = 1
+                self.Blinky_directionY = 0
+            if random_direction == 2: 
+                self.Blinky_directionX = -1
+                self.Blinky_directionY = 0
+            if random_direction == 3: 
+                self.Blinky_directionX = 0
+                self.Blinky_directionY = 1
+            if random_direction == 4: 
+                self.Blinky_directionX = 0
+                self.Blinky_directionY = -1
+            self.Blinky_timer = 33
+        self.Blinky_timer = self.Blinky_timer - 1
+        self.ghost.ghost_direction(0, self.Blinky_directionX, self.Blinky_directionY)
+
+
+
     def check_food(self):
         for Node in self.nodes:
             if (Node.position()[0] - 20) < self.pac.position.asTuple()[0] < (Node.position()[0] + 20):
@@ -192,6 +250,7 @@ class Graph(object):
         for Powerup in self.powerup: Powerup.draw()
         #self.ghost.ghost_direction(3, 1, 1)
         #print(self.ghost.Blinky_location)
+        self.random_track(0)
 
 
 class Node(Sprite):
