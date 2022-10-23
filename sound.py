@@ -17,9 +17,9 @@ class Sound:
     def Run_stop(self):
         pg.mixer.music.stop()
 
-    def Die(self):
-        pg.mixer.music('sounds/startrek2.wav')
-        pg.mixer.music.play(loops=0)
+    # def Die(self):
+    #     pg.mixer.music('sounds/startrek2.wav')
+    #     pg.mixer.music.play(loops=0)
 
 
     

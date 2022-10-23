@@ -12,7 +12,7 @@ class Ghost(Sprite):
     def __init__(self,game):
         self.game = game
         self.screen = game
-        self.Blinky_location = (200, 160)
+        self.Blinky_location = (200, 180)
         self.image__01_location = (220, 160)
         self.image__02_location = (240, 160)
         self.image__03_location = (260, 160) 
@@ -28,6 +28,7 @@ class Ghost(Sprite):
         self.rect = self.image__02.get_rect()
         self.rect = self.image__03.get_rect()
         #self.screen_rect = game.screen.get_rect()
+        self.dying = self.dead = False
 
     def ghost_direction(self, type, xNew, yNew):
         if type == 0: 
@@ -63,6 +64,10 @@ class Ghost(Sprite):
     #         for pacman in collisions:
     #             pacman.hit()
 
+    def hit(self):
+        if not self.dying:
+            print("This was hit")
+            self.dying = True
 class Blinky(Ghost):
     def __init__(self,game):
         Ghost.__init__(self, game)

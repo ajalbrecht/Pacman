@@ -19,7 +19,7 @@ class GameController(object):
         self.background = None
         self.clock = pygame.time.Clock()
         self.graph = 0
-        self.sound = 0
+        self.sound = Sound()
         self.x=0
         self.y =0
 
@@ -62,12 +62,17 @@ class GameController(object):
         self.pacman.render(screen= self.screen)
         self.ghost.render(self.screen,self.x,self.y)
         self.graph.render()
+
         pygame.display.flip()
         pygame.display.update()
 
+    def reset(self):
+        self.pacman.reset()
+        self.graph.is_empty()
+
     def game_over(self):
         print("All lives have been lost")
-        self.sound.Die()
+        # self.sound.Die()
         pygame.quit()
         sys.exit()
 

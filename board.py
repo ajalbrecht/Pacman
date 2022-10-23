@@ -128,6 +128,20 @@ class Graph(object):
                     self.sound.Eat()
                     # increments points here  <-
 
+    def check_pacghost(self):
+        newx = self.ghost.Blinky_location[0]
+        newy = self.ghost.Blinky_location[1]
+        if (newx - 20) < self.pac.position.asTuple()[0] < (newx + 20):
+            if (newy - 20) < self.pac.position.asTuple()[1] < (newy + 20):
+                self.pac.hit()
+                self.pac.really_dead()
+
+    # def check_food(self):
+    #         if (self.ghost.Blinky_location.asTuple()[0] - 20) < self.pac.position.asTuple()[0] < (self.ghost.BLINKY_location()[0] + 20):
+    #             if (Node.position()[1] - 20) < self.pac.position.asTuple()[1] < (Node.position()[1] + 20):
+    #                 Node.hit()
+    #                 self.sound.Eat()
+
     def check_wall(self):
         # prevent collsion from down direction
         for Wall in self.walls:
@@ -171,6 +185,7 @@ class Graph(object):
         self.check_food()
         self.check_wall()
         self.is_powerup()
+        self.check_pacghost()
         self.is_empty()
         for Node in self.nodes: Node.draw()
         for Wall in self.walls: Wall.draw()

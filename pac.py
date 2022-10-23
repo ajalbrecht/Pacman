@@ -17,6 +17,7 @@ class Pacman(Sprite):
         self.speed = 65
         self.radius = 10
         self.color = settings.YELLOW
+        # self.lives_x_start_pos = self.settings.SCREENWIDTH - (self.pac_lives()[0] * 2 + 20)
         self.image = pygame.image.load('images/yellowdot.png')
         self.rect = self.image.get_rect()
         self.screen_rect = game.screen.get_rect()
@@ -28,17 +29,10 @@ class Pacman(Sprite):
         self.position += self.directions[self.direction]*self.speed*dt
         direction = self.getValidKey()
         self.direction = direction
+        
 
 
-    def hit(self):
-        if not self.dying:
-            print('PAC IS HIT !!!!!!!!!!!!!!!!!!!!!')
-            self.dying = True 
 
-    def really_dead(self):
-        self.pac_lives -= 1
-        print(f'Ship is dead! Only {self.pac_lives} ships left')
-        self.game.reset() if self.pac_lives > 0 else self.game.game_over()
         
     def getValidKey(self):
         key_pressed = pygame.key.get_pressed()
@@ -58,8 +52,22 @@ class Pacman(Sprite):
         return self.keys
     
 
+    def reset(self):
+        self.position = Vector(200, 400)
+        self.dying = self.dead = False
+
+    def hit(self):
+        if not self.dying:
+            print('PAC IS HIT !!!!!!!!!!!!!!!!!!!!!')
+            self.dying = True 
+
+    def really_dead(self):
+        self.pac_lives -= 1
+        print(f'Pacman has died! Only {self.pac_lives} lives left')
+        self.game.reset() if self.pac_lives > 0 else self.game.game_over()
 
     def render(self, screen):
         p = self.position.asInt()
         pygame.draw.circle(screen, self.color, p, self.radius)
 
+    # def render_lives(self, screen):
