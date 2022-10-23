@@ -35,7 +35,7 @@ class GameController(object):
         self.ghost = Ghost(self.screen)
         self.sound = Sound()
         # testing game board commands
-        self.graph = Graph(self.screen, self.pacman, self.sound)
+        self.graph = Graph(self.screen, self.pacman, self.sound, self.ghost)
         #print(self.graph.SetCharacterLocation(3,2,1))
 
     def update(self):

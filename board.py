@@ -5,11 +5,12 @@ import sound
 
 class Graph(object):
     print("I was called") 
-    def __init__(self, screen, pac, sound):
+    def __init__(self, screen, pac, sound, ghost):
         # 0=wall   1=open_space_with_food    2=open_space_without_food   3=ghost_house_door
         self.screen = screen
         self.pac = pac
         self.sound = sound
+        self.ghost = ghost
         self.game_board = [[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
                            [0,3,1,1,1,1,1,1,1,1,1,1,1,3,0],
                            [0,1,0,1,0,0,0,0,0,0,0,1,0,1,0],
@@ -174,6 +175,8 @@ class Graph(object):
         for Node in self.nodes: Node.draw()
         for Wall in self.walls: Wall.draw()
         for Powerup in self.powerup: Powerup.draw()
+        #self.ghost.ghost_direction(3, 1, 1)
+        #print(self.ghost.Blinky_location)
 
 
 class Node(Sprite):

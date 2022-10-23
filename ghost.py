@@ -1,3 +1,4 @@
+from pyexpat.errors import XML_ERROR_XML_DECL
 from vector import Vector
 import pygame as pg
 from pygame.sprite import Sprite, Group
@@ -5,6 +6,7 @@ from timer import Timer
 import settings
 import pygame.locals
 from sys import exit
+import board
 
 class Ghost(Sprite):
     def __init__(self,game):
@@ -26,6 +28,27 @@ class Ghost(Sprite):
         self.rect = self.image__02.get_rect()
         self.rect = self.image__03.get_rect()
         #self.screen_rect = game.screen.get_rect()
+
+    def ghost_direction(self, type, xNew, yNew):
+        if type == 0: 
+            xOld = self.Blinky_location[0]
+            yOld = self.Blinky_location[1]
+            self.Blinky_location = (xNew + xOld, yNew + yOld)
+        if type == 1: 
+            xOld = self.image__01_location[0]
+            yOld = self.image__01_location[1]
+            self.image__01_location = (xNew + xOld, yNew + yOld)
+        if type == 2: 
+            xOld = self.image__02_location[0]
+            yOld = self.image__02_location[1]
+            self.image__02_location = (xNew + xOld, yNew + yOld)
+        if type == 3: 
+            xOld = self.image__03_location[0]
+            yOld = self.image__03_location[1]
+            self.image__03_location = (xNew + xOld, yNew + yOld)
+
+    #def give_location(self, type):
+     #   if type = 0: 
        
    
     def render(self, screen, x , y):
