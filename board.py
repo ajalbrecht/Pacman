@@ -9,6 +9,7 @@ class Graph(object):
     print("I was called") 
     def __init__(self, screen, pac, sound, ghost):
         # 0=wall   1=open_space_with_food    2=open_space_without_food   3=ghost_house_door
+        # 5 = Teleport
         self.screen = screen
         self.pac = pac
         self.sound = sound
@@ -28,7 +29,7 @@ class Graph(object):
                            [0,1,0,1,0,0,0,0,0,0,0,1,0,1,0],
                            [0,1,0,1,1,1,0,0,0,1,1,1,0,1,0],
                            [0,1,0,1,0,1,0,0,0,1,0,1,0,1,0],
-                           [0,1,0,1,0,1,1,1,1,1,0,1,0,1,0],
+                           [5,1,0,1,0,1,1,1,1,1,0,1,0,1,6],
                            [0,1,0,1,0,0,1,0,1,0,0,1,0,1,0],
                            [0,1,0,1,0,0,1,0,1,0,0,1,0,1,0],
                            [0,1,1,1,1,1,1,1,1,1,1,1,1,1,0],
@@ -40,6 +41,8 @@ class Graph(object):
                            [2,2,2,2,2,2,2,2,2,2,2,2,2,2,2]]
         self.nodes = Group()
         self.walls = Group()
+        self.teleport = Group()
+        self.teleport2 = Group()
         self.powerup = Group()
         for y in range(17):
             for x in range(15):
@@ -48,7 +51,11 @@ class Graph(object):
                 if self.game_board[y][x] == 0:
                     self.walls.add(Wall(x, y,self.screen))
                 if self.game_board[y][x] == 3:
-                    self.powerup.add(Powerup(x, y,self.screen))                
+                    self.powerup.add(Powerup(x, y,self.screen))
+                if self.game_board[y][x] == 5:
+                    self.teleport.add(Teleport(x, y,self.screen))   
+                if self.game_board[y][x] == 6:
+                    self.teleport2.add(Teleport2(x, y,self.screen))             
 
         # dead code atm
         self.Pacman = [[0,0,0,0,0,0,0],
@@ -194,11 +201,28 @@ class Graph(object):
                 self.pac.hit()
                 self.pac.really_dead()
 
-    # def check_food(self):
-    #         if (self.ghost.Blinky_location.asTuple()[0] - 20) < self.pac.position.asTuple()[0] < (self.ghost.BLINKY_location()[0] + 20):
-    #             if (Node.position()[1] - 20) < self.pac.position.asTuple()[1] < (Node.position()[1] + 20):
-    #                 Node.hit()
-    #                 self.sound.Eat()
+    # def check_ghostpac(self):
+    #     newx = self.ghost.Blinky_location[0]
+    #     newy = self.ghost.Blinky_location[1]
+    #     if (newx - 20) < self.pac.position.asTuple()[0] < (newx + 20):
+    #         if (newy - 20) < self.pac.position.asTuple()[1] < (newy + 20):
+    #             self.ghost.hit()
+
+    # def powereffect(self):
+    #     self.check_ghostpac()
+
+    def check_teleport(self):
+        for Teleport in self.teleport:
+            if (Teleport.position()[0] - 20) < self.pac.position.asTuple()[0] < (Teleport.position()[0] + 20):
+                if (Teleport.position()[1] - 20) < self.pac.position.asTuple()[1] < (Teleport.position()[1] + 20):
+                    self.pac.teleport()
+                    Teleport.hit()
+    def check_teleport2(self):
+        for Teleport2 in self.teleport2:
+            if (Teleport2.position()[0] - 20) < self.pac.position.asTuple()[0] < (Teleport2.position()[0] + 20):
+                if (Teleport2.position()[1] - 20) < self.pac.position.asTuple()[1] < (Teleport2.position()[1] + 20):
+                    self.pac.teleport2()
+                    Teleport2.hit()
 
     def check_wall(self):
         # prevent collsion from down direction
@@ -244,10 +268,14 @@ class Graph(object):
         self.check_wall()
         self.is_powerup()
         self.check_pacghost()
+        # self.powereffect()
+        self.check_teleport()
+        self.check_teleport2()
         self.is_empty()
         for Node in self.nodes: Node.draw()
         for Wall in self.walls: Wall.draw()
         for Powerup in self.powerup: Powerup.draw()
+        for Teleport in self.teleport: Teleport.draw()
         #self.ghost.ghost_direction(3, 1, 1)
         #print(self.ghost.Blinky_location)
         self.random_track(0)
@@ -298,8 +326,40 @@ class Powerup(Sprite):
     def position(self):
         return self.x, self.y   
 
+class Teleport(Sprite):
+    def __init__(self, x, y, screen):
+        super().__init__()
+        self.x = x * 32 + 16
+        self.y = y * 32 + 16
+        self.screen = screen
+        
+    def draw(self):    
+        pg.draw.circle(self.screen, (0,0,0), (self.x, self.y), 5)
+
+    def hit(self):
+        print("This was hit ")
         
 
+    def position(self):
+        return self.x, self.y
+
+        
+class Teleport2(Sprite):
+    def __init__(self, x, y, screen):
+        super().__init__()
+        self.x = x * 32 + 16
+        self.y = y * 32 + 16
+        self.screen = screen
+        
+    def draw(self):    
+        pg.draw.circle(self.screen, (0,0,0), (self.x, self.y), 5)
+
+    def hit(self):
+        print("This was hit ")
+        
+
+    def position(self):
+        return self.x, self.y
 
 
         #want to.. set pos for each, return pos for each, reset all board, 

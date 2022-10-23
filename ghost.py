@@ -64,10 +64,15 @@ class Ghost(Sprite):
     #         for pacman in collisions:
     #             pacman.hit()
 
+    def reset(self):
+        self.Blinky_location = (200, 180)
+        self.dying = self.dead = False
+
     def hit(self):
         if not self.dying:
             print("This was hit")
             self.dying = True
+            self.reset()
 class Blinky(Ghost):
     def __init__(self,game):
         Ghost.__init__(self, game)

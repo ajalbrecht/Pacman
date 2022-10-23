@@ -62,7 +62,7 @@ class GameController(object):
         self.pacman.render(screen= self.screen)
         self.ghost.render(self.screen,self.x,self.y)
         self.graph.render()
-
+        self.pacman.render_lives()
         pygame.display.flip()
         pygame.display.update()
 
@@ -72,9 +72,8 @@ class GameController(object):
 
     def game_over(self):
         print("All lives have been lost")
+
         # self.sound.Die()
-        pygame.quit()
-        sys.exit()
 
 
 if __name__ == "__main__":
