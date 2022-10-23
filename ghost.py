@@ -34,6 +34,12 @@ class Ghost(Sprite):
         self.screen.blit(self.image__02, self.image__02_location)
         self.screen.blit(self.image__03, self.image__03_location)
 
+    # def checkcollison(self):
+    #     collisions = pygame.sprite.spritecollide(self, self.pacman)  
+    #     if collisions:
+    #         for pacman in collisions:
+    #             pacman.hit()
+
 class Blinky(Ghost):
     def __init__(self,game):
         Ghost.__init__(self, game)
