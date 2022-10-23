@@ -8,6 +8,7 @@ from button import Button
 import game_functions as gf
 from ghost import Ghost
 from sound import Sound
+import sys
 
 class GameController(object):
     def __init__(self):
@@ -22,6 +23,7 @@ class GameController(object):
         self.x=0
         self.y =0
 
+
         self.play_button = Button(self.settings, self.screen, "Start Game")
         self.mouse_x, self.mouse_y = pygame.mouse.get_pos()
 
@@ -31,7 +33,7 @@ class GameController(object):
 
     def startGame(self):
         self.setBackground()
-        self.pacman = Pacman()
+        self.pacman = Pacman(game= self)
         self.ghost = Ghost(self.screen)
         self.sound = Sound()
         # testing game board commands
@@ -53,13 +55,21 @@ class GameController(object):
                 #self.ghost.update()
                 gf.check_events(settings=self.settings, stats=self.stats, play_button=self.play_button)
 
+                
+
     def render(self):
         self.screen.blit(self.background, (0, 0))
-        self.pacman.render(self.screen)
+        self.pacman.render(screen= self.screen)
         self.ghost.render(self.screen,self.x,self.y)
         self.graph.render()
         pygame.display.flip()
         pygame.display.update()
+
+    def game_over(self):
+        print("All lives have been lost")
+        self.sound.Die()
+        pygame.quit()
+        sys.exit()
 
 
 if __name__ == "__main__":
