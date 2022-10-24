@@ -8,6 +8,7 @@ from button import Button
 import game_functions as gf
 from ghost import Ghost
 from sound import Sound
+from scoreboard import Scoreboard
 import sys
 
 class GameController(object):
@@ -22,7 +23,7 @@ class GameController(object):
         self.sound = Sound()
         self.x=0
         self.y =0
-
+        self.sb = Scoreboard(self.settings, self.screen, self.stats)
 
         self.play_button = Button(self.settings, self.screen, "Start Game")
         self.mouse_x, self.mouse_y = pygame.mouse.get_pos()
@@ -37,7 +38,7 @@ class GameController(object):
         self.ghost = Ghost(self.screen)
         self.sound = Sound()
         # testing game board commands
-        self.graph = Graph(self.screen, self.pacman, self.sound, self.ghost)
+        self.graph = Graph(self.screen, self.pacman, self.sound, self.ghost, self.stats, self.sb)
         #print(self.graph.SetCharacterLocation(3,2,1))
 
     def update(self):
@@ -47,6 +48,7 @@ class GameController(object):
             self.play_button.draw_button()
             gf.check_events(settings=self.settings, stats=self.stats, play_button=self.play_button)
             pygame.display.flip()
+    
 
         while self.stats.game_active == True:
                 dt = self.clock.tick(30) / 1000.0
@@ -54,6 +56,8 @@ class GameController(object):
                 self.pacman.update(dt)
                 #self.ghost.update()
                 gf.check_events(settings=self.settings, stats=self.stats, play_button=self.play_button)
+                self.sb.show_score()
+                pygame.display.flip()
 
                 
 

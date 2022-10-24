@@ -24,6 +24,7 @@ class Pacman(Sprite):
         self.pac_lives = settings.PACMAN_LIVES
         self.lives_x_start_pos = self.settings.SCREENWIDTH - (self.pac_lives * 2 + 20)
         self.dying = self.dead = False
+        self.food_points = 50
 
     def update(self, dt):	
         self.position += self.directions[self.direction]*self.speed*dt
