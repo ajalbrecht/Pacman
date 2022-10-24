@@ -592,6 +592,7 @@ class Graph(object):
     def run(self):
         # invert positins to run
         self.run_away = 0
+        self.sound.Run()
 
     
     def render(self):
