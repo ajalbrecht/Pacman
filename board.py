@@ -98,8 +98,8 @@ class Graph(object):
             if self.pac.getValidKey() == settings.LEFT:
                 offsetX = 50
 
-            x = self.ghost.image__01_location[0]/ 32
-            y = self.ghost.image__01_location[1]/ 32
+            x = self.ghost.Pinky_location[0]/ 32
+            y = self.ghost.Pinky_location[1]/ 32
             x = round(x)
             y = round(y)
             option_list = []
@@ -107,16 +107,16 @@ class Graph(object):
             #(self.Blinky_old_move)
             if self.game_board[y+1][x] != 0 and self.Pinky_old_move != 4 and self.game_board[y+1][x] != 2: 
                 option_list.append(3)
-                heurestic_list.append((self.pac.position.asInt()[1] + offsetY) - self.ghost.image__01_location[1])
+                heurestic_list.append((self.pac.position.asInt()[1] + offsetY) - self.ghost.Pinky_location[1])
             if self.game_board[y-1][x] != 0 and self.Pinky_old_move != 3 and self.game_board[y-1][x] != 2: 
                 option_list.append(4)
-                heurestic_list.append(self.ghost.image__01_location[1] - (self.pac.position.asInt()[1] + offsetY))
+                heurestic_list.append(self.ghost.Pinky_location[1] - (self.pac.position.asInt()[1] + offsetY))
             if self.game_board[y][x+1] != 0 and self.Pinky_old_move != 2 and self.game_board[y][x+1] != 2: 
                 option_list.append(1)
-                heurestic_list.append((self.pac.position.asInt()[0] + offsetX) - self.ghost.image__01_location[0])
+                heurestic_list.append((self.pac.position.asInt()[0] + offsetX) - self.ghost.Pinky_location[0])
             if self.game_board[y][x-1] != 0 and self.Pinky_old_move != 1 and self.game_board[y][x-1] != 2: 
                 option_list.append(2)
-                heurestic_list.append(self.ghost.image__01_location[0] - (self.pac.position.asInt()[0] + offsetX))
+                heurestic_list.append(self.ghost.Pinky_location[0] - (self.pac.position.asInt()[0] + offsetX))
             #print(option_list)
             #print(heurestic_list)
             best_option = -1000
@@ -156,8 +156,8 @@ class Graph(object):
         #print(self.ghost.Blinky_location)
         #print(self.pac.position.asInt()[0])
         if self.Clyde_timer == 0:
-            x = self.ghost.image__03_location[0] / 32
-            y = self.ghost.image__03_location[1] / 32
+            x = self.ghost.Clyde_location[0] / 32
+            y = self.ghost.Clyde_location[1] / 32
             x = round(x)
             y = round(y)
             option_list = []
@@ -165,16 +165,16 @@ class Graph(object):
             #(self.Blinky_old_move)
             if self.game_board[y+1][x] != 0 and self.Clyde_old_move != 4 and self.game_board[y+1][x] != 2: 
                 option_list.append(3)
-                heurestic_list.append(self.pac.position.asInt()[1] - self.ghost.image__03_location[1])
+                heurestic_list.append(self.pac.position.asInt()[1] - self.ghost.Clyde_location[1])
             if self.game_board[y-1][x] != 0 and self.Clyde_old_move != 3 and self.game_board[y-1][x] != 2: 
                 option_list.append(4)
-                heurestic_list.append(self.ghost.image__03_location[1] - self.pac.position.asInt()[1])
+                heurestic_list.append(self.ghost.Clyde_location[1] - self.pac.position.asInt()[1])
             if self.game_board[y][x+1] != 0 and self.Clyde_old_move != 2 and self.game_board[y][x+1] != 2: 
                 option_list.append(1)
-                heurestic_list.append(self.pac.position.asInt()[0] - self.ghost.image__03_location[0])
+                heurestic_list.append(self.pac.position.asInt()[0] - self.ghost.Clyde_location[0])
             if self.game_board[y][x-1] != 0 and self.Clyde_old_move != 1 and self.game_board[y][x-1] != 2: 
                 option_list.append(2)
-                heurestic_list.append(self.ghost.image__03_location[0] - self.pac.position.asInt()[0])
+                heurestic_list.append(self.ghost.Clyde_location[0] - self.pac.position.asInt()[0])
             #print(option_list)
             #print(heurestic_list)
             best_option = -1000
@@ -282,8 +282,8 @@ class Graph(object):
         #print(self.ghost.Blinky_location)
         #print(self.pac.position.asInt()[0])
         if self.Inky_timer == 0:
-            x = self.ghost.image__02_location[0] / 32
-            y = self.ghost.image__02_location[1] / 32
+            x = self.ghost.Inky_location[0] / 32
+            y = self.ghost.Inky_location[1] / 32
             x = round(x)
             y = round(y)
             option_list = []
@@ -291,13 +291,13 @@ class Graph(object):
             #print(self.Blinky_old_move)
             if self.game_board[y+1][x] != 0 and self.Inky_old_move != 4 and self.game_board[y+1][x] != 2: 
                 option_list.append(3)
-                heurestic_list.append((self.pac.position.asInt()[1] + self.ghost.Blinky_location[1])/2 - self.ghost.image__02_location[1])
+                heurestic_list.append((self.pac.position.asInt()[1] + self.ghost.Blinky_location[1])/2 - self.ghost.Inky_location[1])
             if self.game_board[y-1][x] != 0 and self.Inky_old_move != 3 and self.game_board[y-1][x] != 2: 
                 option_list.append(4)
                 heurestic_list.append((self.pac.position.asInt()[1] + self.ghost.Blinky_location[1])/2 - self.pac.position.asInt()[1])
             if self.game_board[y][x+1] != 0 and self.Inky_old_move != 2 and self.game_board[y][x+1] != 2: 
                 option_list.append(1)
-                heurestic_list.append((self.pac.position.asInt()[0] + self.ghost.Blinky_location[0])/2 - self.ghost.image__02_location[0])
+                heurestic_list.append((self.pac.position.asInt()[0] + self.ghost.Blinky_location[0])/2 - self.ghost.Inky_location[0])
             if self.game_board[y][x-1] != 0 and self.Inky_old_move != 1 and self.game_board[y][x-1] != 2: 
                 option_list.append(2)
                 heurestic_list.append((self.pac.position.asInt()[0] + self.ghost.Blinky_location[0])/2 - self.pac.position.asInt()[0])
@@ -349,23 +349,75 @@ class Graph(object):
 
                    
 
-    def check_pacghost(self):
+    def check_pacBlinky(self):
         newx = self.ghost.Blinky_location[0]
         newy = self.ghost.Blinky_location[1]
         if (newx - 20) < self.pac.position.asTuple()[0] < (newx + 20):
             if (newy - 20) < self.pac.position.asTuple()[1] < (newy + 20):
                 self.pac.hit()
                 self.pac.really_dead()
+    def check_pacPinky(self):
+        newx = self.ghost.Pinky_location[0]
+        newy = self.ghost.Pinky_location[1]
+        if (newx - 20) < self.pac.position.asTuple()[0] < (newx + 20):
+            if (newy - 20) < self.pac.position.asTuple()[1] < (newy + 20):
+                self.pac.hit()
+                self.pac.really_dead()
 
-    # def check_ghostpac(self):
+    def check_pacInky(self):
+        newx = self.ghost.Inky_location[0]
+        newy = self.ghost.Inky_location[1]
+        if (newx - 20) < self.pac.position.asTuple()[0] < (newx + 20):
+            if (newy - 20) < self.pac.position.asTuple()[1] < (newy + 20):
+                self.pac.hit()
+                self.pac.really_dead()
+
+    def check_pacClyde(self):
+        newx = self.ghost.Pinky_location[0]
+        newy = self.ghost.Pinky_location[1]
+        if (newx - 20) < self.pac.position.asTuple()[0] < (newx + 20):
+            if (newy - 20) < self.pac.position.asTuple()[1] < (newy + 20):
+                self.pac.hit()
+                self.pac.really_dead()
+
+
+    # def check_ghostPinky_(self):
+    #     newx = self.ghost.Pinky_location[0]
+    #     newy = self.ghost.Pinky_location[1]
+    #     if (newx - 20) < self.pac.position.asTuple()[0] < (newx + 20):
+    #         if (newy - 20) < self.pac.position.asTuple()[1] < (newy + 20):
+    #             self.ghost.hitP()
+
+
+
+    # def check_ghostInky(self):
+    #     newx = self.ghost.Inky_location[0]
+    #     newy = self.ghost.Inky_location[1]
+    #     if (newx - 20) < self.pac.position.asTuple()[0] < (newx + 20):
+    #         if (newy - 20) < self.pac.position.asTuple()[1] < (newy + 20):
+    #             self.ghost.hitI()
+
+
+    
+
+    # def check_ghostClyde(self):
+    #     newx = self.ghost.Clyde_location[0]
+    #     newy = self.ghost.Clyde_location[1]
+    #     if (newx - 20) < self.pac.position.asTuple()[0] < (newx + 20):
+    #         if (newy - 20) < self.pac.position.asTuple()[1] < (newy + 20):
+    #             self.ghost.hitC()
     #     newx = self.ghost.Blinky_location[0]
     #     newy = self.ghost.Blinky_location[1]
     #     if (newx - 20) < self.pac.position.asTuple()[0] < (newx + 20):
     #         if (newy - 20) < self.pac.position.asTuple()[1] < (newy + 20):
-    #             self.ghost.hit()
+    #             self.ghost.hitB()
 
     # def powereffect(self):
     #     self.check_ghostpac()
+    #     self.check_ghostClyde()
+    #     self.check_ghostInky()
+    #     self.check_ghostPinky_()
+
 
     def check_teleport(self):
         for Teleport in self.teleport:
@@ -379,6 +431,42 @@ class Graph(object):
                 if (Teleport2.position()[1] - 20) < self.pac.position.asTuple()[1] < (Teleport2.position()[1] + 20):
                     self.pac.teleport2()
                     Teleport2.hit()
+
+    # def check_teleportGB(self):
+    #     newx = self.ghost.Blinky_location[0]
+    #     newy = self.ghost.Blinky_location[1]
+    #     for Teleport in self.teleport:
+    #         if (Teleport.position()[0] - 20) < newx < (Teleport.position()[0] + 20):
+    #             if (Teleport.position()[1] - 20) < newy < (Teleport.position()[1] + 20):
+    #                 self.ghost.teleportPinky_()
+    #                 Teleport.hit()
+    # def check_teleportGB2(self):
+    #     newx = self.ghost.image__1__location[0]
+    #     newy = self.ghost.image__1__location[1]
+    #     for Teleport2 in self.teleport2:
+    #         if (Teleport2.position()[0] - 20) < newx < (Teleport2.position()[0] + 20):
+    #             if (Teleport2.position()[1] - 20) < newy < (Teleport2.position()[1] + 20):
+    #                 self.ghost.teleportPinky_2()
+    #                 Teleport2.hit()
+
+    def check_teleportGB(self):
+        newx = self.ghost.Blinky_location[0]
+        newy = self.ghost.Blinky_location[1]
+        for Teleport in self.teleport:
+            if (Teleport.position()[0] - 20) < newx < (Teleport.position()[0] + 20):
+                if (Teleport.position()[1] - 20) < newy < (Teleport.position()[1] + 20):
+                    self.ghost.teleportPinky_()
+                    Teleport.hit()
+    def check_teleportGB2(self):
+        newx = self.ghost.image__1__location[0]
+        newy = self.ghost.image__1__location[1]
+        for Teleport2 in self.teleport2:
+            if (Teleport2.position()[0] - 20) < newx < (Teleport2.position()[0] + 20):
+                if (Teleport2.position()[1] - 20) < newy < (Teleport2.position()[1] + 20):
+                    self.ghost.teleportPinky_2()
+                    Teleport2.hit()
+                    
+
 
     def check_wall(self):
         # prevent collsion from down direction
@@ -430,10 +518,13 @@ class Graph(object):
         self.check_wall()
         self.is_powerup()
         self.is_fruit()
-        self.check_pacghost()
         # self.powereffect()
         self.check_teleport()
         self.check_teleport2()
+        self.check_pacBlinky()
+        self.check_pacPinky()
+        self.check_pacClyde()
+        self.check_pacInky()
         self.is_empty()
         for Node in self.nodes: Node.draw()
         for Wall in self.walls: Wall.draw()
