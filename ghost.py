@@ -65,19 +65,19 @@ class Ghost(Sprite):
     #             pacman.hit()
 
     def resetBlinky(self):
-        self.Blinky_location = (200, 180)
+        self.Blinky_location = (224, 96)
         self.dying = self.dead = False
 
     def resetPinky(self):
-        self.Pinky_location = (200, 180)
+        self.Pinky_location = (224, 96)
         self.dying = self.dead = False
 
     def resetInky(self):
-        self.Inky_location = (200, 180)
+        self.Inky_location = (224, 96)
         self.dying = self.dead = False
 
     def resetClyde(self):
-        self.Clyde_location = (200, 180)
+        self.Clyde_location = (224, 96)
         self.dying = self.dead = False
     def hitC(self):
         if not self.dying:

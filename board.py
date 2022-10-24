@@ -112,16 +112,16 @@ class Graph(object):
             option_list = []
             heurestic_list = []
             #(self.Blinky_old_move)
-            if self.game_board[y+1][x] != 0 and self.Pinky_old_move != 4 and self.game_board[y+1][x] != 2 and 5 and 6: 
+            if self.game_board[y+1][x] != 0 and self.Pinky_old_move != 4 and self.game_board[y+1][x] != 2 and self.game_board[y+1][x] != 5 and self.game_board[y+1][x] != 6: 
                 option_list.append(3)
                 heurestic_list.append((self.pac.position.asInt()[1] + offsetY) - self.ghost.Pinky_location[1])
-            if self.game_board[y-1][x] != 0 and self.Pinky_old_move != 3 and self.game_board[y-1][x] != 2 and 5 and 6: 
+            if self.game_board[y-1][x] != 0 and self.Pinky_old_move != 3 and self.game_board[y-1][x] != 2 and self.game_board[y-1][x] != 5 and self.game_board[y-1][x] != 6: 
                 option_list.append(4)
-                heurestic_list.append(self.ghost.Pinky_location[1] - (self.pac.position.asInt()[1] + offsetY))
-            if self.game_board[y][x+1] != 0 and self.Pinky_old_move != 2 and self.game_board[y][x+1] != 2 and 5 and 6: 
+                heurestic_list.append(self.ghost.Pinky_location[1] - (self.pac.position.asInt()[1] + offsetY) + run_add)
+            if self.game_board[y][x+1] != 0 and self.Pinky_old_move != 2 and self.game_board[y][x+1] != 2 and self.game_board[y][x+1] != 5 and self.game_board[y][x+1] != 6: 
                 option_list.append(1)
                 heurestic_list.append((self.pac.position.asInt()[0] + offsetX) - self.ghost.Pinky_location[0])
-            if self.game_board[y][x-1] != 0 and self.Pinky_old_move != 1 and self.game_board[y][x-1] != 2 and 5 and 6: 
+            if self.game_board[y][x-1] != 0 and self.Pinky_old_move != 1 and self.game_board[y][x-1] != 2 and self.game_board[y][x-1] != 5 and self.game_board[y][x-1] != 6: 
                 option_list.append(2)
                 heurestic_list.append(run_add + self.ghost.Pinky_location[0] - (self.pac.position.asInt()[0] + offsetX))
             #print(option_list)
@@ -174,16 +174,16 @@ class Graph(object):
             option_list = []
             heurestic_list = []
             #(self.Blinky_old_move)
-            if self.game_board[y+1][x] != 0 and self.Clyde_old_move != 4 and self.game_board[y+1][x] != 2 and 5 and 6: 
+            if self.game_board[y+1][x] != 0 and self.Clyde_old_move != 4 and self.game_board[y+1][x] != 2 and self.game_board[y+1][x] != 5 and self.game_board[y+1][x] != 6: 
                 option_list.append(3)
-                heurestic_list.append(self.pac.position.asInt()[1] - self.ghost.Clyde_location[1])
-            if self.game_board[y-1][x] != 0 and self.Clyde_old_move != 3 and self.game_board[y-1][x] != 2 and 5 and 6: 
+                heurestic_list.append(run_add + self.pac.position.asInt()[1] - self.ghost.Clyde_location[1])
+            if self.game_board[y-1][x] != 0 and self.Clyde_old_move != 3 and self.game_board[y-1][x] != 2 and self.game_board[y-1][x] != 5 and self.game_board[y-1][x] != 6: 
                 option_list.append(4)
                 heurestic_list.append(self.ghost.Clyde_location[1] - self.pac.position.asInt()[1])
-            if self.game_board[y][x+1] != 0 and self.Clyde_old_move != 2 and self.game_board[y][x+1] != 2 and 5 and 6: 
+            if self.game_board[y][x+1] != 0 and self.Clyde_old_move != 2 and self.game_board[y][x+1] != 2 and self.game_board[y][x+1] != 5 and self.game_board[y][x+1] != 6: 
                 option_list.append(1)
                 heurestic_list.append(self.pac.position.asInt()[0] - self.ghost.Clyde_location[0])
-            if self.game_board[y][x-1] != 0 and self.Clyde_old_move != 1 and self.game_board[y][x-1] != 2 and 5 and 6: 
+            if self.game_board[y][x-1] != 0 and self.Clyde_old_move != 1 and self.game_board[y][x-1] != 2 and self.game_board[y][x-1] != 5 and self.game_board[y][x-1] != 6: 
                 option_list.append(2)
                 heurestic_list.append(run_add + self.ghost.Clyde_location[0] - self.pac.position.asInt()[0])
             #print(option_list)
@@ -246,16 +246,16 @@ class Graph(object):
             option_list = []
             heurestic_list = []
             #(self.Blinky_old_move)
-            if self.game_board[y+1][x] != 0 and self.Blinky_old_move != 4 and self.game_board[y+1][x] != 2 and 5 and 6: 
+            if self.game_board[y+1][x] != 0 and self.Blinky_old_move != 4 and self.game_board[y+1][x] != 2 and self.game_board[y+1][x] != 5 and self.game_board[y+1][x] != 6: 
                 option_list.append(3)
                 heurestic_list.append(self.pac.position.asInt()[1] - self.ghost.Blinky_location[1])
-            if self.game_board[y-1][x] != 0 and self.Blinky_old_move != 3 and self.game_board[y-1][x] != 2 and 5 and 6: 
+            if self.game_board[y-1][x] != 0 and self.Blinky_old_move != 3 and self.game_board[y-1][x] != 2 and self.game_board[y-1][x] != 5 and self.game_board[y-1][x] != 6: 
                 option_list.append(4)
-                heurestic_list.append(self.ghost.Blinky_location[1] - self.pac.position.asInt()[1])
-            if self.game_board[y][x+1] != 0 and self.Blinky_old_move != 2 and self.game_board[y][x+1] != 2 and 5 and 6: 
+                heurestic_list.append(run_add + self.ghost.Blinky_location[1] - self.pac.position.asInt()[1])
+            if self.game_board[y][x+1] != 0 and self.Blinky_old_move != 2 and self.game_board[y][x+1] != 2 and self.game_board[y][x+1] != 5 and self.game_board[y][x+1] != 6: 
                 option_list.append(1)
-                heurestic_list.append(self.pac.position.asInt()[0] - self.ghost.Blinky_location[0])
-            if self.game_board[y][x-1] != 0 and self.Blinky_old_move != 1 and self.game_board[y][x-1] != 2 and 5 and 6: 
+                heurestic_list.append(run_add + self.pac.position.asInt()[0] - self.ghost.Blinky_location[0])
+            if self.game_board[y][x-1] != 0 and self.Blinky_old_move != 1 and self.game_board[y][x-1] != 2 and self.game_board[y][x-1] != 5 and self.game_board[y][x-1] != 6: 
                 option_list.append(2)
                 heurestic_list.append(self.ghost.Blinky_location[0] - self.pac.position.asInt()[0])
             #print(option_list)
@@ -308,16 +308,16 @@ class Graph(object):
             option_list = []
             heurestic_list = []
             #print(self.Blinky_old_move)
-            if self.game_board[y+1][x] != 0 and self.Inky_old_move != 4 and self.game_board[y+1][x] != 2 and 5 and 6: 
+            if self.game_board[y+1][x] != 0 and self.Inky_old_move != 4 and self.game_board[y+1][x] != 2 and self.game_board[y+1][x] != 5 and self.game_board[y+1][x] != 6: 
                 option_list.append(3)
-                heurestic_list.append((self.pac.position.asInt()[1] + self.ghost.Blinky_location[1])/2 - self.ghost.Inky_location[1])
-            if self.game_board[y-1][x] != 0 and self.Inky_old_move != 3 and self.game_board[y-1][x] != 2 and 5 and 6: 
+                heurestic_list.append((run_add + self.pac.position.asInt()[1] + self.ghost.Blinky_location[1])/2 - self.ghost.Inky_location[1])
+            if self.game_board[y-1][x] != 0 and self.Inky_old_move != 3 and self.game_board[y-1][x] != 2 and self.game_board[y-1][x] != 5 and self.game_board[y-1][x] != 6: 
                 option_list.append(4)
                 heurestic_list.append((self.pac.position.asInt()[1] + self.ghost.Blinky_location[1])/2 - self.pac.position.asInt()[1])
-            if self.game_board[y][x+1] != 0 and self.Inky_old_move != 2 and self.game_board[y][x+1] != 2 and 5 and 6: 
+            if self.game_board[y][x+1] != 0 and self.Inky_old_move != 2 and self.game_board[y][x+1] != 2 and self.game_board[y][x+1] != 5 and self.game_board[y][x+1] != 6: 
                 option_list.append(1)
-                heurestic_list.append((self.pac.position.asInt()[0] + self.ghost.Blinky_location[0])/2 - self.ghost.Inky_location[0])
-            if self.game_board[y][x-1] != 0 and self.Inky_old_move != 1 and self.game_board[y][x-1] != 2 and 5 and 6: 
+                heurestic_list.append((run_add + self.pac.position.asInt()[0] + self.ghost.Blinky_location[0])/2 - self.ghost.Inky_location[0])
+            if self.game_board[y][x-1] != 0 and self.Inky_old_move != 1 and self.game_board[y][x-1] != 2 and self.game_board[y][x-1] != 5 and self.game_board[y][x-1] != 6: 
                 option_list.append(2)
                 heurestic_list.append((self.pac.position.asInt()[0] + self.ghost.Blinky_location[0])/2 - self.pac.position.asInt()[0])
             #print(option_list)
@@ -416,6 +416,7 @@ class Graph(object):
         if (newx - 20) < self.pac.position.asTuple()[0] < (newx + 20):
             if (newy - 20) < self.pac.position.asTuple()[1] < (newy + 20):
                 self.ghost.hitP()
+                self.Pinky_timer = 0
 
 
 
@@ -425,6 +426,7 @@ class Graph(object):
         if (newx - 20) < self.pac.position.asTuple()[0] < (newx + 20):
             if (newy - 20) < self.pac.position.asTuple()[1] < (newy + 20):
                 self.ghost.hitI()
+                self.Inky_timer = 0
 
 
     
@@ -435,6 +437,7 @@ class Graph(object):
         if (newx - 20) < self.pac.position.asTuple()[0] < (newx + 20):
             if (newy - 20) < self.pac.position.asTuple()[1] < (newy + 20):
                 self.ghost.hitC()
+                self.Clyde_timer = 0
 
     def check_ghostBlinky(self):
         newx = self.ghost.Blinky_location[0]
@@ -442,6 +445,7 @@ class Graph(object):
         if (newx - 20) < self.pac.position.asTuple()[0] < (newx + 20):
             if (newy - 20) < self.pac.position.asTuple()[1] < (newy + 20):
                 self.ghost.hitB()
+                self.Blinky_timer = 0
 
     def powereffect(self):
         self.check_ghostBlinky()
@@ -582,6 +586,8 @@ class Graph(object):
                 for x in range(15):
                     if self.game_board[y][x] == 1:
                         self.nodes.add(Node(x, y,self.screen))
+                    if self.game_board[y][x] == 3:
+                        self.powerup.add(Powerup(x, y,self.screen))
 
     def run(self):
         # invert positins to run
@@ -603,9 +609,13 @@ class Graph(object):
         self.check_teleportGI2()
         self.check_teleportGC()
         self.check_teleportGC2()
-        # self.powereffect()
-        self.check_pac_collision()
         self.is_empty()
+
+        if self.run_away < 300:
+            self.powereffect()
+        else:
+            self.check_pac_collision()
+
         for Node in self.nodes: Node.draw()
         for Wall in self.walls: Wall.draw()
         for Powerup in self.powerup: Powerup.draw()
