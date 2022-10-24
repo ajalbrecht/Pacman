@@ -13,9 +13,9 @@ class Ghost(Sprite):
         self.game = game
         self.screen = game
         self.Blinky_location = (224, 96) # 266 128
-        self.image__01_location = (256, 96) # 220 160
-        self.image__02_location = (288, 96)
-        self.image__03_location = (320, 96) 
+        self.image__01_location = (192, 160) # 220 160
+        self.image__02_location = (224, 160)
+        self.image__03_location = (256, 160) 
         #self.settings = game.settings
         #self.speed = 100
         self.Blinky = pg.image.load('images/red-ghost.png')

@@ -17,6 +17,7 @@ class Graph(object):
         self.ghost = ghost
         self.stats = stats
         self.sb = sb
+        self.time = 0
         
         self.Blinky_timer = 0
         self.Blinky_directionX = 0
@@ -444,9 +445,22 @@ class Graph(object):
         #self.ghost.ghost_direction(3, 1, 1)
         #print(self.ghost.Blinky_location)
         self.move_blinky()
-        self.move_pinky()
-        self.move_clyde()
-        self.move_inky()
+        if self.time == 100:
+            self.ghost.ghost_direction(1, 32, -64)
+        if self.time > 100:
+            self.move_pinky()
+        
+        if self.time == 200:
+           self.ghost.ghost_direction(2, 0, -64) 
+        if self.time > 200:
+            self.move_inky()
+
+        if self.time == 300:
+            self.ghost.ghost_direction(3, -32, -64)
+        if self.time > 300:
+            self.move_clyde()
+        
+        self.time += 1
 
 
 class Node(Sprite):
@@ -546,7 +560,3 @@ class Teleport2(Sprite):
     def position(self):
         return self.x, self.y
 
-
-        #want to.. set pos for each, return pos for each, reset all board, 
-        #add later (poettialy draw board based upon array, gosts should still have their own draw)
-        # 14 * 18 Board
