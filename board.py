@@ -474,7 +474,7 @@ class Graph(object):
             if (Teleport.position()[0] - 20) < newx < (Teleport.position()[0] + 20):
                 if (Teleport.position()[1] - 20) < newy < (Teleport.position()[1] + 20):
                     self.ghost.teleportB_()
-                    Teleport.hitB()
+                    Teleport.hit()
     def check_teleportGB2(self):
         newx = self.ghost.Blinky_location[0]
         newy = self.ghost.Blinky_location[1]
@@ -482,7 +482,7 @@ class Graph(object):
             if (Teleport2.position()[0] - 20) < newx < (Teleport2.position()[0] + 20):
                 if (Teleport2.position()[1] - 20) < newy < (Teleport2.position()[1] + 20):
                     self.ghost.teleportB_2()
-                    Teleport2.hitB()
+                    Teleport2.hit()
 
     def check_teleportGP(self):
         newx = self.ghost.Pinky_location[0]
@@ -491,7 +491,7 @@ class Graph(object):
             if (Teleport.position()[0] - 20) < newx < (Teleport.position()[0] + 20):
                 if (Teleport.position()[1] - 20) < newy < (Teleport.position()[1] + 20):
                     self.ghost.teleportP_()
-                    Teleport.hitP()
+                    Teleport.hit()
     def check_teleportGP2(self):
         newx = self.ghost.Pinky_location[0]
         newy = self.ghost.Pinky_location[1]
@@ -499,7 +499,7 @@ class Graph(object):
             if (Teleport2.position()[0] - 20) < newx < (Teleport2.position()[0] + 20):
                 if (Teleport2.position()[1] - 20) < newy < (Teleport2.position()[1] + 20):
                     self.ghost.teleportP_2()
-                    Teleport2.hitP()
+                    Teleport2.hit()
 
     def check_teleportGI(self):
         newx = self.ghost.Inky_location[0]
