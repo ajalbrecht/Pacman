@@ -77,7 +77,8 @@ class GameController(object):
 
     def game_over(self):
         print("All lives have been lost")
-
+        pygame.quit()
+        sys.exit()
         # self.sound.Die()
 
 
