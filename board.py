@@ -710,7 +710,7 @@ class Fruit(Sprite):
 class Teleport(Sprite):
     def __init__(self, x, y, screen):
         super().__init__()
-        self.x = x * 32 + 16
+        self.x = x * 32 + 18
         self.y = y * 32 + 16
         self.screen = screen
         
