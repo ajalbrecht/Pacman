@@ -450,22 +450,22 @@ class Graph(object):
     #                 self.ghost.teleportPinky_2()
     #                 Teleport2.hit()
 
-    def check_teleportGB(self):
-        newx = self.ghost.Blinky_location[0]
-        newy = self.ghost.Blinky_location[1]
-        for Teleport in self.teleport:
-            if (Teleport.position()[0] - 20) < newx < (Teleport.position()[0] + 20):
-                if (Teleport.position()[1] - 20) < newy < (Teleport.position()[1] + 20):
-                    self.ghost.teleportPinky_()
-                    Teleport.hit()
-    def check_teleportGB2(self):
-        newx = self.ghost.image__1__location[0]
-        newy = self.ghost.image__1__location[1]
-        for Teleport2 in self.teleport2:
-            if (Teleport2.position()[0] - 20) < newx < (Teleport2.position()[0] + 20):
-                if (Teleport2.position()[1] - 20) < newy < (Teleport2.position()[1] + 20):
-                    self.ghost.teleportPinky_2()
-                    Teleport2.hit()
+    # def check_teleportGB(self):
+    #     newx = self.ghost.Blinky_location[0]
+    #     newy = self.ghost.Blinky_location[1]
+    #     for Teleport in self.teleport:
+    #         if (Teleport.position()[0] - 20) < newx < (Teleport.position()[0] + 20):
+    #             if (Teleport.position()[1] - 20) < newy < (Teleport.position()[1] + 20):
+    #                 self.ghost.teleportPinky_()
+    #                 Teleport.hit()
+    # def check_teleportGB2(self):
+    #     newx = self.ghost.image__1__location[0]
+    #     newy = self.ghost.image__1__location[1]
+    #     for Teleport2 in self.teleport2:
+    #         if (Teleport2.position()[0] - 20) < newx < (Teleport2.position()[0] + 20):
+    #             if (Teleport2.position()[1] - 20) < newy < (Teleport2.position()[1] + 20):
+    #                 self.ghost.teleportPinky_2()
+    #                 Teleport2.hit()
                     
 
 
