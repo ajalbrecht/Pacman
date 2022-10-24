@@ -6,14 +6,16 @@ class Scoreboard():
         self.screen_rect = screen.get_rect()
         self.settings = settings
         self.stats = stats
+        self.textfont = pygame.font.Font('fonts/Joystix.TTF', 30)
 
 # Font settings for scoring information.
         self.text_color = (255, 255, 255)
-        self.font = pygame.font.SysFont(None, 48)
+        self.font = pygame.font.Font('fonts/Joystix.TTF', 30)
 
 # Prepare the initial score image.
         self.prep_score()
         self.prep_high_score()
+        self.prep_level()
 
     def prep_score(self):
 
@@ -25,6 +27,17 @@ class Scoreboard():
         self.score_rect = self.score_image.get_rect()
         self.score_rect.right = self.screen_rect.right - 20
         self.score_rect.bottom = 590
+
+    def prep_level(self):
+        level_str = str(self.stats.level)
+        self.level_image = self.font.render(level_str, True, self.text_color,
+        self.settings.bg_color_level)
+
+    # Display the score at the top left of the screen
+        self.level_rect = self.level_image.get_rect()
+        self.level_rect.left = self.screen_rect.left + 120
+        self.level_rect.top = 0
+    
 
     def check_high_score(self):
         if self.stats.score > self.stats.high_score:
@@ -38,7 +51,7 @@ class Scoreboard():
         self.high_score_image = self.font.render(high_score_str, True,
         self.text_color, self.settings.bg_color)
 
-        # Center the high score at the top of the screen.
+        # Center the high score at the bottom middle of the screen
         self.high_score_rect = self.high_score_image.get_rect()
         self.high_score_rect.centerx = self.screen_rect.centerx
         self.high_score_rect.bottom = self.score_rect.bottom
@@ -46,4 +59,8 @@ class Scoreboard():
     def show_score(self):
         self.screen.blit(self.score_image, self.score_rect)
         self.screen.blit(self.high_score_image, self.high_score_rect)
+        self.screen.blit(self.level_image, self.level_rect)
+
+        self.text1 = self.textfont.render("LEVEL", 1, (255,255,255))
+        self.screen.blit(self.text1, (0, 0))
         

@@ -362,10 +362,14 @@ class Graph(object):
     def is_empty(self):
         #print(self.nodes.sprites())
         if not self.nodes.sprites():
+            self.stats.level = self.stats.level + 1
+            self.sb.prep_level()
+            print("level increment")
             for y in range(17):
                 for x in range(15):
                     if self.game_board[y][x] == 1:
                         self.nodes.add(Node(x, y,self.screen))
+
     
     def render(self):
         self.check_food()

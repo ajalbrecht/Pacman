@@ -69,7 +69,7 @@ class GameController(object):
         self.graph.render()
         self.pacman.render_lives()
         pygame.display.flip()
-        pygame.display.update()
+      #  pygame.display.update()
 
     def reset(self):
         self.pacman.reset()

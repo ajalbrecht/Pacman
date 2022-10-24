@@ -56,6 +56,7 @@ class Pacman(Sprite):
         self.dying = self.dead = False
         self.stats.score = 0
         self.stats.update_highscore()
+  
 
     def hit(self):
         if not self.dying:
