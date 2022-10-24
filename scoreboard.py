@@ -25,7 +25,7 @@ class Scoreboard():
 
     # Display the score at the top right of the screen.
         self.score_rect = self.score_image.get_rect()
-        self.score_rect.right = self.screen_rect.right - 20
+        self.score_rect.right = self.screen_rect.right - 30
         self.score_rect.bottom = 590
 
     def prep_level(self):
@@ -53,7 +53,7 @@ class Scoreboard():
 
         # Center the high score at the bottom middle of the screen
         self.high_score_rect = self.high_score_image.get_rect()
-        self.high_score_rect.centerx = self.screen_rect.centerx
+        self.high_score_rect.centerx = self.screen_rect.centerx - 40
         self.high_score_rect.bottom = self.score_rect.bottom
 
     def show_score(self):
@@ -63,4 +63,10 @@ class Scoreboard():
 
         self.text1 = self.textfont.render("LEVEL", 1, (255,255,255))
         self.screen.blit(self.text1, (0, 0))
+
+        self.text1 = self.textfont.render("HS: ", 1, (255,255,255))
+        self.screen.blit(self.text1, (95, 560))
+
+        self.text1 = self.textfont.render("Score: ", 1, (255,255,255))
+        self.screen.blit(self.text1, (285, 560))
         
