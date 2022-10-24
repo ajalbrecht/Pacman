@@ -193,7 +193,6 @@ class Graph(object):
 
 
     def check_food(self):
-
         for Node in self.nodes:
             if (Node.position()[0] - 20) < self.pac.position.asTuple()[0] < (Node.position()[0] + 20):
                 if (Node.position()[1] - 20) < self.pac.position.asTuple()[1] < (Node.position()[1] + 20):
@@ -202,6 +201,7 @@ class Graph(object):
                     #When hit, add points and call prep score
                     self.stats.score += self.pac.food_points
                     self.sb.prep_score()
+
                    
 
     def check_pacghost(self):

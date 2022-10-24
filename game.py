@@ -34,7 +34,7 @@ class GameController(object):
 
     def startGame(self):
         self.setBackground()
-        self.pacman = Pacman(game= self)
+        self.pacman = Pacman(game= self, stats=self.stats)
         self.ghost = Ghost(self.screen)
         self.sound = Sound()
         # testing game board commands
@@ -57,6 +57,7 @@ class GameController(object):
                 #self.ghost.update()
                 gf.check_events(settings=self.settings, stats=self.stats, play_button=self.play_button)
                 self.sb.show_score()
+                self.sb.check_high_score()
                 pygame.display.flip()
 
                 

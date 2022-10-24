@@ -6,7 +6,7 @@ from pygame.sprite import Sprite, Group
 
 
 class Pacman(Sprite):
-    def __init__(self, game):
+    def __init__(self, game,stats):
         self.game = game
         self.name = settings.PACMAN
         self.screen = game.screen
@@ -25,6 +25,7 @@ class Pacman(Sprite):
         self.lives_x_start_pos = self.settings.SCREENWIDTH - (self.pac_lives * 2 + 20)
         self.dying = self.dead = False
         self.food_points = 50
+        self.stats = stats
 
     def update(self, dt):	
         self.position += self.directions[self.direction]*self.speed*dt
@@ -53,6 +54,8 @@ class Pacman(Sprite):
     def reset(self):
         self.position = Vector(200, 400)
         self.dying = self.dead = False
+        self.stats.score = 0
+        self.stats.update_highscore()
 
     def hit(self):
         if not self.dying:
