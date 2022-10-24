@@ -101,6 +101,32 @@ class Ghost(Sprite):
             print("This was hit")
             self.dying = True
             self.resetBlinky()
+
+
+    def teleportB_(self):
+       self.Blinky_location = (440, 310)
+
+    def teleportB_2(self):
+       self.Blinky_location = (224, 310)
+
+    def teleportP_(self):
+       self.Pinky_location = (440, 310)
+
+    def teleportP_2(self):
+       self.Pinky_location = (224, 310)
+
+    def teleportI_(self):
+       self.Inky_location = (440, 310)
+
+    def teleportI_2(self):
+       self.Inky_location = (224, 310)
+
+    def teleportC_(self):
+       self.Clyde_location = (440, 310)
+
+    def teleportC_2(self):
+       self.Clyde_location = (224, 310)
+
 class Blinky(Ghost):
     def __init__(self,game):
         Ghost.__init__(self, game)

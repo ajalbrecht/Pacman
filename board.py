@@ -106,16 +106,16 @@ class Graph(object):
             option_list = []
             heurestic_list = []
             #(self.Blinky_old_move)
-            if self.game_board[y+1][x] != 0 and self.Pinky_old_move != 4 and self.game_board[y+1][x] != 2: 
+            if self.game_board[y+1][x] != 0 and self.Pinky_old_move != 4 and self.game_board[y+1][x] != 2 and 5 and 6: 
                 option_list.append(3)
                 heurestic_list.append((self.pac.position.asInt()[1] + offsetY) - self.ghost.Pinky_location[1])
-            if self.game_board[y-1][x] != 0 and self.Pinky_old_move != 3 and self.game_board[y-1][x] != 2: 
+            if self.game_board[y-1][x] != 0 and self.Pinky_old_move != 3 and self.game_board[y-1][x] != 2 and 5 and 6: 
                 option_list.append(4)
                 heurestic_list.append(self.ghost.Pinky_location[1] - (self.pac.position.asInt()[1] + offsetY))
-            if self.game_board[y][x+1] != 0 and self.Pinky_old_move != 2 and self.game_board[y][x+1] != 2: 
+            if self.game_board[y][x+1] != 0 and self.Pinky_old_move != 2 and self.game_board[y][x+1] != 2 and 5 and 6: 
                 option_list.append(1)
                 heurestic_list.append((self.pac.position.asInt()[0] + offsetX) - self.ghost.Pinky_location[0])
-            if self.game_board[y][x-1] != 0 and self.Pinky_old_move != 1 and self.game_board[y][x-1] != 2: 
+            if self.game_board[y][x-1] != 0 and self.Pinky_old_move != 1 and self.game_board[y][x-1] != 2 and 5 and 6: 
                 option_list.append(2)
                 heurestic_list.append(self.ghost.Pinky_location[0] - (self.pac.position.asInt()[0] + offsetX))
             #print(option_list)
@@ -164,16 +164,16 @@ class Graph(object):
             option_list = []
             heurestic_list = []
             #(self.Blinky_old_move)
-            if self.game_board[y+1][x] != 0 and self.Clyde_old_move != 4 and self.game_board[y+1][x] != 2: 
+            if self.game_board[y+1][x] != 0 and self.Clyde_old_move != 4 and self.game_board[y+1][x] != 2 and 5 and 6: 
                 option_list.append(3)
                 heurestic_list.append(self.pac.position.asInt()[1] - self.ghost.Clyde_location[1])
-            if self.game_board[y-1][x] != 0 and self.Clyde_old_move != 3 and self.game_board[y-1][x] != 2: 
+            if self.game_board[y-1][x] != 0 and self.Clyde_old_move != 3 and self.game_board[y-1][x] != 2 and 5 and 6: 
                 option_list.append(4)
                 heurestic_list.append(self.ghost.Clyde_location[1] - self.pac.position.asInt()[1])
-            if self.game_board[y][x+1] != 0 and self.Clyde_old_move != 2 and self.game_board[y][x+1] != 2: 
+            if self.game_board[y][x+1] != 0 and self.Clyde_old_move != 2 and self.game_board[y][x+1] != 2 and 5 and 6: 
                 option_list.append(1)
                 heurestic_list.append(self.pac.position.asInt()[0] - self.ghost.Clyde_location[0])
-            if self.game_board[y][x-1] != 0 and self.Clyde_old_move != 1 and self.game_board[y][x-1] != 2: 
+            if self.game_board[y][x-1] != 0 and self.Clyde_old_move != 1 and self.game_board[y][x-1] != 2 and 5 and 6: 
                 option_list.append(2)
                 heurestic_list.append(self.ghost.Clyde_location[0] - self.pac.position.asInt()[0])
             #print(option_list)
@@ -232,16 +232,16 @@ class Graph(object):
             option_list = []
             heurestic_list = []
             #(self.Blinky_old_move)
-            if self.game_board[y+1][x] != 0 and self.Blinky_old_move != 4 and self.game_board[y+1][x] != 2: 
+            if self.game_board[y+1][x] != 0 and self.Blinky_old_move != 4 and self.game_board[y+1][x] != 2 and 5 and 6: 
                 option_list.append(3)
                 heurestic_list.append(self.pac.position.asInt()[1] - self.ghost.Blinky_location[1])
-            if self.game_board[y-1][x] != 0 and self.Blinky_old_move != 3 and self.game_board[y-1][x] != 2: 
+            if self.game_board[y-1][x] != 0 and self.Blinky_old_move != 3 and self.game_board[y-1][x] != 2 and 5 and 6: 
                 option_list.append(4)
                 heurestic_list.append(self.ghost.Blinky_location[1] - self.pac.position.asInt()[1])
-            if self.game_board[y][x+1] != 0 and self.Blinky_old_move != 2 and self.game_board[y][x+1] != 2: 
+            if self.game_board[y][x+1] != 0 and self.Blinky_old_move != 2 and self.game_board[y][x+1] != 2 and 5 and 6: 
                 option_list.append(1)
                 heurestic_list.append(self.pac.position.asInt()[0] - self.ghost.Blinky_location[0])
-            if self.game_board[y][x-1] != 0 and self.Blinky_old_move != 1 and self.game_board[y][x-1] != 2: 
+            if self.game_board[y][x-1] != 0 and self.Blinky_old_move != 1 and self.game_board[y][x-1] != 2 and 5 and 6: 
                 option_list.append(2)
                 heurestic_list.append(self.ghost.Blinky_location[0] - self.pac.position.asInt()[0])
             #print(option_list)
@@ -290,16 +290,16 @@ class Graph(object):
             option_list = []
             heurestic_list = []
             #print(self.Blinky_old_move)
-            if self.game_board[y+1][x] != 0 and self.Inky_old_move != 4 and self.game_board[y+1][x] != 2: 
+            if self.game_board[y+1][x] != 0 and self.Inky_old_move != 4 and self.game_board[y+1][x] != 2 and 5 and 6: 
                 option_list.append(3)
                 heurestic_list.append((self.pac.position.asInt()[1] + self.ghost.Blinky_location[1])/2 - self.ghost.Inky_location[1])
-            if self.game_board[y-1][x] != 0 and self.Inky_old_move != 3 and self.game_board[y-1][x] != 2: 
+            if self.game_board[y-1][x] != 0 and self.Inky_old_move != 3 and self.game_board[y-1][x] != 2 and 5 and 6: 
                 option_list.append(4)
                 heurestic_list.append((self.pac.position.asInt()[1] + self.ghost.Blinky_location[1])/2 - self.pac.position.asInt()[1])
-            if self.game_board[y][x+1] != 0 and self.Inky_old_move != 2 and self.game_board[y][x+1] != 2: 
+            if self.game_board[y][x+1] != 0 and self.Inky_old_move != 2 and self.game_board[y][x+1] != 2 and 5 and 6: 
                 option_list.append(1)
                 heurestic_list.append((self.pac.position.asInt()[0] + self.ghost.Blinky_location[0])/2 - self.ghost.Inky_location[0])
-            if self.game_board[y][x-1] != 0 and self.Inky_old_move != 1 and self.game_board[y][x-1] != 2: 
+            if self.game_board[y][x-1] != 0 and self.Inky_old_move != 1 and self.game_board[y][x-1] != 2 and 5 and 6: 
                 option_list.append(2)
                 heurestic_list.append((self.pac.position.asInt()[0] + self.ghost.Blinky_location[0])/2 - self.pac.position.asInt()[0])
             print(option_list)
@@ -356,6 +356,7 @@ class Graph(object):
         if (newx - 20) < self.pac.position.asTuple()[0] < (newx + 20):
             if (newy - 20) < self.pac.position.asTuple()[1] < (newy + 20):
                 self.pac.hit()
+                self.sound.Die()
                 self.pac.really_dead()
     def check_pacPinky(self):
         newx = self.ghost.Pinky_location[0]
@@ -363,6 +364,7 @@ class Graph(object):
         if (newx - 20) < self.pac.position.asTuple()[0] < (newx + 20):
             if (newy - 20) < self.pac.position.asTuple()[1] < (newy + 20):
                 self.pac.hit()
+                self.sound.Die()
                 self.pac.really_dead()
 
     def check_pacInky(self):
@@ -371,6 +373,7 @@ class Graph(object):
         if (newx - 20) < self.pac.position.asTuple()[0] < (newx + 20):
             if (newy - 20) < self.pac.position.asTuple()[1] < (newy + 20):
                 self.pac.hit()
+                self.sound.Die()
                 self.pac.really_dead()
 
     def check_pacClyde(self):
@@ -379,45 +382,54 @@ class Graph(object):
         if (newx - 20) < self.pac.position.asTuple()[0] < (newx + 20):
             if (newy - 20) < self.pac.position.asTuple()[1] < (newy + 20):
                 self.pac.hit()
+                self.sound.Die()
                 self.pac.really_dead()
 
-
-    # def check_ghostPinky_(self):
-    #     newx = self.ghost.Pinky_location[0]
-    #     newy = self.ghost.Pinky_location[1]
-    #     if (newx - 20) < self.pac.position.asTuple()[0] < (newx + 20):
-    #         if (newy - 20) < self.pac.position.asTuple()[1] < (newy + 20):
-    #             self.ghost.hitP()
+    def check_pac_collision(self):
+        self.check_pacBlinky()
+        self.check_pacPinky()
+        self.check_pacClyde()
+        self.check_pacInky()
 
 
+    def check_ghostPinky(self):
+        newx = self.ghost.Pinky_location[0]
+        newy = self.ghost.Pinky_location[1]
+        if (newx - 20) < self.pac.position.asTuple()[0] < (newx + 20):
+            if (newy - 20) < self.pac.position.asTuple()[1] < (newy + 20):
+                self.ghost.hitP()
 
-    # def check_ghostInky(self):
-    #     newx = self.ghost.Inky_location[0]
-    #     newy = self.ghost.Inky_location[1]
-    #     if (newx - 20) < self.pac.position.asTuple()[0] < (newx + 20):
-    #         if (newy - 20) < self.pac.position.asTuple()[1] < (newy + 20):
-    #             self.ghost.hitI()
+
+
+    def check_ghostInky(self):
+        newx = self.ghost.Inky_location[0]
+        newy = self.ghost.Inky_location[1]
+        if (newx - 20) < self.pac.position.asTuple()[0] < (newx + 20):
+            if (newy - 20) < self.pac.position.asTuple()[1] < (newy + 20):
+                self.ghost.hitI()
 
 
     
 
-    # def check_ghostClyde(self):
-    #     newx = self.ghost.Clyde_location[0]
-    #     newy = self.ghost.Clyde_location[1]
-    #     if (newx - 20) < self.pac.position.asTuple()[0] < (newx + 20):
-    #         if (newy - 20) < self.pac.position.asTuple()[1] < (newy + 20):
-    #             self.ghost.hitC()
-    #     newx = self.ghost.Blinky_location[0]
-    #     newy = self.ghost.Blinky_location[1]
-    #     if (newx - 20) < self.pac.position.asTuple()[0] < (newx + 20):
-    #         if (newy - 20) < self.pac.position.asTuple()[1] < (newy + 20):
-    #             self.ghost.hitB()
+    def check_ghostClyde(self):
+        newx = self.ghost.Clyde_location[0]
+        newy = self.ghost.Clyde_location[1]
+        if (newx - 20) < self.pac.position.asTuple()[0] < (newx + 20):
+            if (newy - 20) < self.pac.position.asTuple()[1] < (newy + 20):
+                self.ghost.hitC()
 
-    # def powereffect(self):
-    #     self.check_ghostpac()
-    #     self.check_ghostClyde()
-    #     self.check_ghostInky()
-    #     self.check_ghostPinky_()
+    def check_ghostBlinky(self):
+        newx = self.ghost.Blinky_location[0]
+        newy = self.ghost.Blinky_location[1]
+        if (newx - 20) < self.pac.position.asTuple()[0] < (newx + 20):
+            if (newy - 20) < self.pac.position.asTuple()[1] < (newy + 20):
+                self.ghost.hitB()
+
+    def powereffect(self):
+        self.check_ghostBlinky()
+        self.check_ghostClyde()
+        self.check_ghostInky()
+        self.check_ghostPinky()
 
 
     def check_teleport(self):
@@ -433,40 +445,74 @@ class Graph(object):
                     self.pac.teleport2()
                     Teleport2.hit()
 
-    # def check_teleportGB(self):
-    #     newx = self.ghost.Blinky_location[0]
-    #     newy = self.ghost.Blinky_location[1]
-    #     for Teleport in self.teleport:
-    #         if (Teleport.position()[0] - 20) < newx < (Teleport.position()[0] + 20):
-    #             if (Teleport.position()[1] - 20) < newy < (Teleport.position()[1] + 20):
-    #                 self.ghost.teleportPinky_()
-    #                 Teleport.hit()
-    # def check_teleportGB2(self):
-    #     newx = self.ghost.image__1__location[0]
-    #     newy = self.ghost.image__1__location[1]
-    #     for Teleport2 in self.teleport2:
-    #         if (Teleport2.position()[0] - 20) < newx < (Teleport2.position()[0] + 20):
-    #             if (Teleport2.position()[1] - 20) < newy < (Teleport2.position()[1] + 20):
-    #                 self.ghost.teleportPinky_2()
-    #                 Teleport2.hit()
+    def check_teleportGB(self):
+        newx = self.ghost.Blinky_location[0]
+        newy = self.ghost.Blinky_location[1]
+        for Teleport in self.teleport:
+            if (Teleport.position()[0] - 20) < newx < (Teleport.position()[0] + 20):
+                if (Teleport.position()[1] - 20) < newy < (Teleport.position()[1] + 20):
+                    self.ghost.teleportB_()
+                    Teleport.hitB()
+    def check_teleportGB2(self):
+        newx = self.ghost.Blinky_location[0]
+        newy = self.ghost.Blinky_location[1]
+        for Teleport2 in self.teleport2:
+            if (Teleport2.position()[0] - 20) < newx < (Teleport2.position()[0] + 20):
+                if (Teleport2.position()[1] - 20) < newy < (Teleport2.position()[1] + 20):
+                    self.ghost.teleportB_2()
+                    Teleport2.hitB()
 
-    # def check_teleportGB(self):
-    #     newx = self.ghost.Blinky_location[0]
-    #     newy = self.ghost.Blinky_location[1]
-    #     for Teleport in self.teleport:
-    #         if (Teleport.position()[0] - 20) < newx < (Teleport.position()[0] + 20):
-    #             if (Teleport.position()[1] - 20) < newy < (Teleport.position()[1] + 20):
-    #                 self.ghost.teleportPinky_()
-    #                 Teleport.hit()
-    # def check_teleportGB2(self):
-    #     newx = self.ghost.image__1__location[0]
-    #     newy = self.ghost.image__1__location[1]
-    #     for Teleport2 in self.teleport2:
-    #         if (Teleport2.position()[0] - 20) < newx < (Teleport2.position()[0] + 20):
-    #             if (Teleport2.position()[1] - 20) < newy < (Teleport2.position()[1] + 20):
-    #                 self.ghost.teleportPinky_2()
-    #                 Teleport2.hit()
-                    
+    def check_teleportGP(self):
+        newx = self.ghost.Pinky_location[0]
+        newy = self.ghost.Pinky_location[1]
+        for Teleport in self.teleport:
+            if (Teleport.position()[0] - 20) < newx < (Teleport.position()[0] + 20):
+                if (Teleport.position()[1] - 20) < newy < (Teleport.position()[1] + 20):
+                    self.ghost.teleportP_()
+                    Teleport.hitP()
+    def check_teleportGP2(self):
+        newx = self.ghost.Pinky_location[0]
+        newy = self.ghost.Pinky_location[1]
+        for Teleport2 in self.teleport2:
+            if (Teleport2.position()[0] - 20) < newx < (Teleport2.position()[0] + 20):
+                if (Teleport2.position()[1] - 20) < newy < (Teleport2.position()[1] + 20):
+                    self.ghost.teleportP_2()
+                    Teleport2.hitP()
+
+    def check_teleportGI(self):
+        newx = self.ghost.Inky_location[0]
+        newy = self.ghost.Inky_location[1]
+        for Teleport in self.teleport:
+            if (Teleport.position()[0] - 20) < newx < (Teleport.position()[0] + 20):
+                if (Teleport.position()[1] - 20) < newy < (Teleport.position()[1] + 20):
+                    self.ghost.teleportI_()
+                    Teleport.hit()
+    def check_teleportGI2(self):
+        newx = self.ghost.Inky_location[0]
+        newy = self.ghost.Inky_location[1]
+        for Teleport2 in self.teleport2:
+            if (Teleport2.position()[0] - 20) < newx < (Teleport2.position()[0] + 20):
+                if (Teleport2.position()[1] - 20) < newy < (Teleport2.position()[1] + 20):
+                    self.ghost.teleportI_2()
+                    Teleport2.hit()
+
+    def check_teleportGC(self):
+        newx = self.ghost.Clyde_location[0]
+        newy = self.ghost.Blinky_location[1]
+        for Teleport in self.teleport:
+            if (Teleport.position()[0] - 20) < newx < (Teleport.position()[0] + 20):
+                if (Teleport.position()[1] - 20) < newy < (Teleport.position()[1] + 20):
+                    self.ghost.teleportC_()
+                    Teleport.hit()
+    def check_teleportGC2(self):
+        newx = self.ghost.Clyde_location[0]
+        newy = self.ghost.Clyde_location[1]
+        for Teleport2 in self.teleport2:
+            if (Teleport2.position()[0] - 20) < newx < (Teleport2.position()[0] + 20):
+                if (Teleport2.position()[1] - 20) < newy < (Teleport2.position()[1] + 20):
+                    self.ghost.teleportC_2()
+                    Teleport2.hit()
+
 
 
     def check_wall(self):
@@ -496,6 +542,7 @@ class Graph(object):
             if (Powerup.position()[0] - 20) < self.pac.position.asTuple()[0] < (Powerup.position()[0] + 20):
                 if (Powerup.position()[1] - 20) < self.pac.position.asTuple()[1] < (Powerup.position()[1] + 20):
                     print("hello there")
+                    self.sound.Power()
                     Powerup.hit()
                     # start chase sound, and end later  
                               
@@ -519,13 +566,18 @@ class Graph(object):
         self.check_wall()
         self.is_powerup()
         self.is_fruit()
-        # self.powereffect()
         self.check_teleport()
         self.check_teleport2()
-        self.check_pacBlinky()
-        self.check_pacPinky()
-        self.check_pacClyde()
-        self.check_pacInky()
+        self.check_teleportGB()
+        self.check_teleportGB2()
+        self.check_teleportGP()
+        self.check_teleportGP2()
+        self.check_teleportGI()
+        self.check_teleportGI2()
+        self.check_teleportGC()
+        self.check_teleportGC2()
+        # self.powereffect()
+        self.check_pac_collision()
         self.is_empty()
         for Node in self.nodes: Node.draw()
         for Wall in self.walls: Wall.draw()
