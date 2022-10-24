@@ -25,7 +25,7 @@ class GameController(object):
         self.y =0
         self.sb = Scoreboard(self.settings, self.screen, self.stats)
 
-        self.play_button = Button(self.settings, self.screen, "Start Game")
+        self.play_button = Button(self.settings, self.screen, "Start Game", self.stats)
         self.mouse_x, self.mouse_y = pygame.mouse.get_pos()
 
     def setBackground(self):
