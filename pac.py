@@ -64,10 +64,10 @@ class Pacman(Sprite):
             self.dying = True 
     
     def teleport(self):
-       self.position = Vector(440, 310)
+       self.position = Vector(430, 310)
 
     def teleport2(self):
-       self.position = Vector(35, 310)
+       self.position = Vector(45, 310)
 
     def really_dead(self):
         self.pac_lives -= 1
