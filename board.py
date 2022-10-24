@@ -1,3 +1,4 @@
+from re import S
 import pygame as pg
 from pygame.sprite import Sprite, Group
 from ghost import Blinky
@@ -83,36 +84,66 @@ class Graph(object):
     def move_pinky(self):
         #self.ghost.ghost_direction(3, 1, 1)
         #print(self.ghost.Blinky_location)
+        #print(self.pac.position.asInt()[0])
+        # pinky chaces infront of where pacman is
         if self.Pinky_timer == 0:
-            x = self.ghost.image__01_location[0] / 32
-            y = self.ghost.image__01_location[1] / 32
+            offsetX = 0
+            offsetY = 0
+            if self.pac.getValidKey() == settings.UP:
+                offsetY = 50
+            if self.pac.getValidKey() == settings.DOWN:
+                offsetY = -50
+            if self.pac.getValidKey() == settings.RIGHT:
+                offsetX = 50
+            if self.pac.getValidKey() == settings.LEFT:
+                offsetX = 50
+
+            x = self.ghost.image__01_location[0]/ 32
+            y = self.ghost.image__01_location[1]/ 32
             x = round(x)
             y = round(y)
             option_list = []
-            #print(self.Pinky_old_move)
+            heurestic_list = []
+            #(self.Blinky_old_move)
             if self.game_board[y+1][x] != 0 and self.Pinky_old_move != 4 and self.game_board[y+1][x] != 2: 
                 option_list.append(3)
+                heurestic_list.append((self.pac.position.asInt()[1] + offsetY) - self.ghost.image__01_location[1])
             if self.game_board[y-1][x] != 0 and self.Pinky_old_move != 3 and self.game_board[y-1][x] != 2: 
                 option_list.append(4)
+                heurestic_list.append(self.ghost.image__01_location[1] - (self.pac.position.asInt()[1] + offsetY))
             if self.game_board[y][x+1] != 0 and self.Pinky_old_move != 2 and self.game_board[y][x+1] != 2: 
                 option_list.append(1)
+                heurestic_list.append((self.pac.position.asInt()[0] + offsetX) - self.ghost.image__01_location[0])
             if self.game_board[y][x-1] != 0 and self.Pinky_old_move != 1 and self.game_board[y][x-1] != 2: 
                 option_list.append(2)
+                heurestic_list.append(self.ghost.image__01_location[0] - (self.pac.position.asInt()[0] + offsetX))
             #print(option_list)
-            random_direction = random.choice(option_list)
-            if random_direction == 1: 
+            #print(heurestic_list)
+            best_option = -1000
+            best_index = 0
+            for i in range(len(heurestic_list)):
+                #print(i)
+                if heurestic_list[i] > best_option:
+                    best_option = heurestic_list[i]
+                    best_index = i
+                    #print(heurestic_list[i])
+            best_index = option_list[best_index]
+            #print(best_option, best_index)
+
+            #random_direction = random.choice(option_list)
+            if best_index == 1: 
                 self.Pinky_directionX = 1
                 self.Pinky_directionY = 0
                 self.Pinky_old_move = 1
-            if random_direction == 2: 
+            if best_index == 2: 
                 self.Pinky_directionX = -1
                 self.Pinky_directionY = 0
                 self.Pinky_old_move = 2
-            if random_direction == 3: 
+            if best_index == 3: 
                 self.Pinky_directionX = 0
                 self.Pinky_directionY = 1
                 self.Pinky_old_move = 3
-            if random_direction == 4: 
+            if best_index == 4: 
                 self.Pinky_directionX = 0
                 self.Pinky_directionY = -1
                 self.Pinky_old_move = 4
@@ -123,39 +154,66 @@ class Graph(object):
     def move_clyde(self):
         #self.ghost.ghost_direction(3, 1, 1)
         #print(self.ghost.Blinky_location)
+        #print(self.pac.position.asInt()[0])
         if self.Clyde_timer == 0:
             x = self.ghost.image__03_location[0] / 32
             y = self.ghost.image__03_location[1] / 32
             x = round(x)
             y = round(y)
             option_list = []
-            #print(self.Clyde_old_move)
+            heurestic_list = []
+            #(self.Blinky_old_move)
             if self.game_board[y+1][x] != 0 and self.Clyde_old_move != 4 and self.game_board[y+1][x] != 2: 
                 option_list.append(3)
+                heurestic_list.append(self.pac.position.asInt()[1] - self.ghost.image__03_location[1])
             if self.game_board[y-1][x] != 0 and self.Clyde_old_move != 3 and self.game_board[y-1][x] != 2: 
                 option_list.append(4)
+                heurestic_list.append(self.ghost.image__03_location[1] - self.pac.position.asInt()[1])
             if self.game_board[y][x+1] != 0 and self.Clyde_old_move != 2 and self.game_board[y][x+1] != 2: 
                 option_list.append(1)
+                heurestic_list.append(self.pac.position.asInt()[0] - self.ghost.image__03_location[0])
             if self.game_board[y][x-1] != 0 and self.Clyde_old_move != 1 and self.game_board[y][x-1] != 2: 
                 option_list.append(2)
+                heurestic_list.append(self.ghost.image__03_location[0] - self.pac.position.asInt()[0])
             #print(option_list)
-            random_direction = random.choice(option_list)
-            if random_direction == 1: 
+            #print(heurestic_list)
+            best_option = -1000
+            best_index = 0
+            for i in range(len(heurestic_list)):
+                #print(i)
+                if heurestic_list[i] > best_option:
+                    best_option = heurestic_list[i]
+                    best_index = i
+                    #print(heurestic_list[i])
+            best_index = option_list[best_index]
+            #print(best_option, best_index)
+
+            #random_direction = random.choice(option_list)
+            if best_index == 1: 
                 self.Clyde_directionX = 1
                 self.Clyde_directionY = 0
                 self.Clyde_old_move = 1
-            if random_direction == 2: 
+            if best_index == 2: 
                 self.Clyde_directionX = -1
                 self.Clyde_directionY = 0
                 self.Clyde_old_move = 2
-            if random_direction == 3: 
+            if best_index == 3: 
                 self.Clyde_directionX = 0
                 self.Clyde_directionY = 1
                 self.Clyde_old_move = 3
-            if random_direction == 4: 
+            if best_index == 4: 
                 self.Clyde_directionX = 0
                 self.Clyde_directionY = -1
                 self.Clyde_old_move = 4
+
+           # clyde runs because hes to close based on decripton
+            if best_option < 100 and best_option > 0:
+                print("switched directions")
+                if self.Clyde_old_move == 1: self.Clyde_old_move = 2
+                if self.Clyde_old_move == 2: self.Clyde_old_move = 1
+                if self.Clyde_old_move == 3: self.Clyde_old_move = 4
+                if self.Clyde_old_move == 4: self.Clyde_old_move = 3
+
             self.Clyde_timer = 32
         self.Clyde_timer = self.Clyde_timer - 1
         self.ghost.ghost_direction(3, self.Clyde_directionX, self.Clyde_directionY)
@@ -230,21 +288,21 @@ class Graph(object):
             y = round(y)
             option_list = []
             heurestic_list = []
-            #(self.Blinky_old_move)
+            #print(self.Blinky_old_move)
             if self.game_board[y+1][x] != 0 and self.Inky_old_move != 4 and self.game_board[y+1][x] != 2: 
                 option_list.append(3)
-                heurestic_list.append(self.pac.position.asInt()[1] - self.ghost.image__02_location[1])
+                heurestic_list.append((self.pac.position.asInt()[1] + self.ghost.Blinky_location[1])/2 - self.ghost.image__02_location[1])
             if self.game_board[y-1][x] != 0 and self.Inky_old_move != 3 and self.game_board[y-1][x] != 2: 
                 option_list.append(4)
-                heurestic_list.append(self.ghost.image__02_location[1] - self.pac.position.asInt()[1])
+                heurestic_list.append((self.pac.position.asInt()[1] + self.ghost.Blinky_location[1])/2 - self.pac.position.asInt()[1])
             if self.game_board[y][x+1] != 0 and self.Inky_old_move != 2 and self.game_board[y][x+1] != 2: 
                 option_list.append(1)
-                heurestic_list.append(self.pac.position.asInt()[0] - self.ghost.image__02_location[0])
+                heurestic_list.append((self.pac.position.asInt()[0] + self.ghost.Blinky_location[0])/2 - self.ghost.image__02_location[0])
             if self.game_board[y][x-1] != 0 and self.Inky_old_move != 1 and self.game_board[y][x-1] != 2: 
                 option_list.append(2)
-                heurestic_list.append(self.ghost.image__02_location[0] - self.pac.position.asInt()[0])
-            #print(option_list)
-            #print(heurestic_list)
+                heurestic_list.append((self.pac.position.asInt()[0] + self.ghost.Blinky_location[0])/2 - self.pac.position.asInt()[0])
+            print(option_list)
+            print(heurestic_list)
             best_option = -1000
             best_index = 0
             for i in range(len(heurestic_list)):
@@ -254,7 +312,7 @@ class Graph(object):
                     best_index = i
                     #print(heurestic_list[i])
             best_index = option_list[best_index]
-            #print(best_option, best_index)
+            print(best_option, best_index)
 
             #random_direction = random.choice(option_list)
             if best_index == 1: 
