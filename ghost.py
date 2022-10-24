@@ -12,10 +12,10 @@ class Ghost(Sprite):
     def __init__(self,game):
         self.game = game
         self.screen = game
-        self.Blinky_location = (200, 180)
-        self.image__01_location = (220, 160)
-        self.image__02_location = (240, 160)
-        self.image__03_location = (260, 160) 
+        self.Blinky_location = (224, 96) # 266 128
+        self.image__01_location = (256, 96) # 220 160
+        self.image__02_location = (288, 96)
+        self.image__03_location = (320, 96) 
         #self.settings = game.settings
         #self.speed = 100
         self.Blinky = pg.image.load('images/red-ghost.png')
